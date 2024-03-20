@@ -28,3 +28,66 @@
 //orintf("%d", c)
 
 //sempre que fizer um sweet coloque um break ou ele não irá parar, irá ler mais do que precisa  e dará erro
+
+
+#include <stdio.h>
+#include <windows.h>
+
+// int main(){
+//     system("color 5");
+//     printf("OIII");
+//     system("pause");
+//     system("color 7");
+// }
+
+
+// int main(){
+//     for(int i = 0;i <10;i++){ //i++ é = i+1, for(int i = ponto_de_partida;i=limite_loop;i++)
+//         printf("oi\n");
+
+// }}
+
+
+
+//for infinito
+
+// for(;;){  
+//     printf("olá")
+// }
+
+
+
+
+//for com variável
+// int main(){
+// //   int i = 0;
+//     for(int i=0;i<10;i++){
+//         printf("mais\n");
+
+// }
+
+// }
+
+
+
+// int main(){
+//     int alunos = 0;
+
+//     while(alunos <30){
+//         alunos ++;
+//         printf("Quantidade de alunos: %i\n", alunos);
+//     }
+// }
+
+
+// int main(){
+//     int alunos =0;
+//     do {
+//         alunos ++;
+//         printf(alunos);
+//     }while(alunos<1);
+
+// }
+
+
+
