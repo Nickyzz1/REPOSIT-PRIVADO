@@ -44,13 +44,18 @@ def mulheres_m():
 
 mulheres_m()
 
+def classes():
+    filtro_1 = titanic[(titanic["Pclass"]==1) & (titanic["Survived"]==1)]
+    porcentagem_1 = round((len(filtro_1)/891)*100)
+    print(f"A quantidade de sobreviventes da primeira classe é: {porcentagem_1}%")
 
+    filtro_2 = titanic[(titanic["Pclass"]==2) & (titanic["Survived"]==1)]
+    porcentagem_2 = round((len(filtro_2)/891)*100)
+    print(f"A quantidade de sobreviventes da segunda classe é: {porcentagem_2}%")
 
-# print(contagem[True])
-# print(contagem[False])
-# print(total)
+    filtro_3 = titanic[(titanic["Pclass"]==3) & (titanic["Survived"]==1)]
+    porcentagem_3 = round((len(filtro_3)/891)*100)
+    print(f"A quantidade de sobreviventes da terceira classe é: {porcentagem_3}%")
 
-# print(total)
-# print(contagem_sob)
-# print(contagem_n)
+classes()
 
