@@ -5,6 +5,29 @@
 //condicionais--> condição, num labirinto vc vai para onde tem luz; isso é condicional
 
 
+recursiva
+ponteiro
+função com parâmeto de ponteiro
+
+while
+do while 
+ponteiros --> fazer código
+função recursiva
+ponteiro
+parâmetro de função sendo ponteiro
+for sobre for
+estudar loops
+pode usar printf dentro da função
+io: input, output
+txt
+heather
+10 questões
+
+
+
+
+
+
 //#include <stdio.h>
 //int main(){
     //FILE * arquivo;
