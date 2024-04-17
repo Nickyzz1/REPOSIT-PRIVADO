@@ -22,7 +22,7 @@ io: input, output
 txt
 heather
 10 questões
-
+//16 bits --> odis bytes--> 4hexas
 
 
 
