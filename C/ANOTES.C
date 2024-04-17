@@ -3,7 +3,7 @@
 
 //ex: código paraa abrir um txt em #C
 //condicionais--> condição, num labirinto vc vai para onde tem luz; isso é condicional
-
+//cada hexa = 4bits
 
 recursiva
 ponteiro
