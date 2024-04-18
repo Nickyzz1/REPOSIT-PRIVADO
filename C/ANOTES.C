@@ -5,6 +5,8 @@
 //condicionais--> condição, num labirinto vc vai para onde tem luz; isso é condicional
 //cada hexa = 4bits
 
+//um inteiro = 4 bytes = 32 bits
+
 recursiva
 ponteiro
 função com parâmeto de ponteiro
