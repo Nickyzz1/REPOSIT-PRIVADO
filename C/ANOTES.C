@@ -144,5 +144,9 @@ int main()
     fclose(File);
 }
 
-
+Troca de Valores: Crie uma função que receba dois ponteiros como parâmetros e troque os valores das variáveis para as quais apontam.
+Soma de Elementos: Escreva uma função que receba um array e seu tamanho como parâmetros e retorne a soma de todos os elementos do array usando ponteiros.
+Maior e Menor Elemento: Crie uma função que receba um array e seu tamanho como parâmetros e use ponteiros para encontrar o maior e o menor elemento do array.
+Ordenação de Array: Implemente uma função que ordene um array de inteiros em ordem crescente usando ponteiros.
+Verificação de Palíndromo: Escreva uma função que receba uma string como parâmetro e use ponteiros para verificar se a string é um palíndromo (ou seja, se ela é igual quando lida de trás para frente).
 
