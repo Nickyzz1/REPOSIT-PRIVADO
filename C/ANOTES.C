@@ -114,5 +114,35 @@ heather
 
 // }
 
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    FILE * File = fopen("Texto.txt", "r+");
+    int Size = 1;
+    rewind(File);
+    while(fgetc(File) != EOF){++Size;}
+    char * Text = malloc(Size);
+    rewind(File);
+    fread(Text, 1, Size, File);
+    printf("%s", Text);
+    fclose(File);
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    FILE * File = fopen("Texto.txt", "r+");
+    int Size = 1;
+    rewind(File);
+    while(fgetc(File) != EOF){++Size;}
+    char * Text = malloc(Size);
+    rewind(File);
+    fread(Text, 1, Size, File);
+    printf("%s", Text);
+    fclose(File);
+}
+
 
 
