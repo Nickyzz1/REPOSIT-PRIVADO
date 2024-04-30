@@ -33,3 +33,9 @@ int main(){
         printf("%s", "\n");
     }
 }
+    // Liberando memória
+    for(int j = 0; j < 3; j++){
+        free(soma[j]);
+    }
+    free(soma);
+}
