@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>😭</title>
+</head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<style>
+    body {
+        overflow: hidden;
+    }
+</style>
+<body>
+    <style>
+        *{
+            font-family: "Pacifico", cursive;
+        }
+        .fundo{
+            width: 600px;
+            height: 400px;
+            border-radius: 15px;
+            background: rgb(255, 255, 255);
+            margin: auto;
+        }
+        .quadrado1{
+            width: 150px;
+            height: 100px;
+            background: rgb(75, 187, 221);
+            margin: 0rem 60rem;
+            border-radius: 2rem;
+            border: 2px solid #000;
+            
+        }
+        .quadrado1:hover{
+            background: rgb(55, 138, 163);
+            cursor: pointer;
+        }
+        .quadrado2{
+            width: 150px;
+            height: 100px;
+            background: rgb(75, 187, 221);
+            margin: -6.5rem 50rem;
+            border-radius: 2rem;
+            border: 2px solid #000;
+            
+        }
+        .quadrado2:hover{
+            background: rgb(55, 138, 163);
+            cursor: pointer;
+        }
+    </style>
+    
+    <div class="fundo">
+        <div style="text-align: center;">
+            <h1>Você aceita ficar comigo para todo o sempre?</h1>
+        </div>
+        <div>
+            <button class="quadrado1" style="font-size: 30px; position: relative; top: 1rem; margin-left: 8rem;" onclick="window.location.href = 'sim.html' ">Sim</button>
+        </div>
+        <div>
+            <button class="quadrado1" style="font-size: 30px; position: relative; top: -5.3rem; margin: auto; margin-left: 20rem;" onmouseover="moveButton(this)" onclick="window.location.href = 'nao.html' ">Não</button>
+        </div>
+    </div>
+    
+    <script>
+        function moveButton(x) {
+            marginX = Math.floor(Math.random()*600)
+            marginY = Math.floor(Math.random()*500)
+    
+            x.style.margin = marginY.toString() + 'px ' + marginX.toString() + 'px'
+        }
+    </script>
+</body>
+</html>
