@@ -3,6 +3,6 @@
     "editor.wordWrap": "on",
     "workbench.colorTheme": "Neon City",
         "workbench.colorCustomizations": {
-            "terminal.foreground": "#00ff37"
+            "terminal.foreground": "#9dff00"
         }
 }
