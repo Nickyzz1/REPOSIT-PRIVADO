@@ -1,0 +1,17 @@
+mas pq não está apontado para o nó depoisd e head?
+ChatGPT
+Entendi sua pergunta agora. A linha newNode->next = *head; está configurando o campo next do novo nó (newNode) para apontar para o nó que head está apontando no momento da inserção.
+
+Quando você insere um novo nó no início da lista encadeada, esse novo nó se torna o primeiro nó da lista, e o nó que head está apontando atualmente se torna o segundo nó. Portanto, ao definir newNode->next = *head;, você está fazendo com que o novo nó aponte para o nó que head está apontando atualmente, que será o segundo nó na lista depois da inserção.
+
+Por exemplo, considere a seguinte lista encadeada antes da inserção:
+
+rust
+Copy code
+head -> A -> B -> C -> NULL
+Quando você insere um novo nó (por exemplo, D) no início da lista, a lista se torna:
+
+rust
+Copy code
+head -> D -> A -> B -> C -> NULL
+Agora, head aponta para o novo nó (D), e D->next aponta para o nó que head estava originalmente apontando (A), que é o segundo nó na lista. Portanto, newNode->next não aponta para o próximo nó depois de head, mas sim para o nó que head estava apontando originalmente.
