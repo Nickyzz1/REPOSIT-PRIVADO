@@ -1,3 +1,5 @@
+
+pq o next está apontado para head e não para depois de head
 mas pq não está apontado para o nó depoisd e head?
 ChatGPT
 Entendi sua pergunta agora. A linha newNode->next = *head; está configurando o campo next do novo nó (newNode) para apontar para o nó que head está apontando no momento da inserção.
