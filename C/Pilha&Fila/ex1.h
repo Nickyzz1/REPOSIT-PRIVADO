@@ -3,34 +3,64 @@
 #ifndef HEADER_H
 #define HEADER_H
 
-//push
+//add um elemento ao topod na pilha
 int * push(int * array, int len, int num)
 {
     int * newArray = (int *) malloc(sizeof(int)*(len+1));
     newArray[0] = num;
 
-    for(int i = 1; i < len; i++)
+    for(int i = 0; i < len; i++)
     {
-        newArray[i] = array[i];
+        newArray[i+1] = array[i];
     }
-    for(int i = 0; i < len + 1; i++)
-    {
-        printf("%i", *newArray[i]);
-    }
-
+    
     return newArray;
 }
 
-//pop
+//remove o elemnto do topod a pilha
 
-//top
+int * pop( int * array, int len)
+{
+    for(int i = 0; i < len; i++)
+    {
+        array[i] = array[i+1];
+    }
+    return array;
+}
+
+//retorna o elemnto do topo da pilha
+
+int * top(int * array, int len)
+{
+
+    return array[0];
+}
+
+//add um elemento ao início da fila
+int * enqueue(int * array, int len, int num)
+{
+    int * newArray = (int *) malloc(sizeof(int)*(len+1));
+    newArray[0] = num;
+
+    for(int i = 0; i < len; i++)
+    {
+        newArray[i+1] = array[i];
+    }
+    
+    return newArray;
 
 
+}
 
-//fila
-//enqueue
-
-//dequeue
+//remove um elemento do inicio da fila
+int dequeue(int * array, int len)
+{
+    for(int i = 0; i < len; i++)
+    {
+        array[i] = array[i+1];
+    }
+    return array;
+}
 
 
 
