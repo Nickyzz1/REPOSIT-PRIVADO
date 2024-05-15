@@ -10,35 +10,104 @@ int main()
     int array[] = {2,3,4,5,6,7,8,9,0};
     int len = sizeof(array)/sizeof(array[0]);
 
-    printf("==================================\n");
-    printf("===========ENTER OPTION===========\n");
-    printf("1 - PUSH =========================\n");
-    printf("2 - POP ==========================\n");
-    printf("3 - TOP ==========================\n");
-    printf("4 - ENQUEUE ======================\n");
-    printf("5 - DEQUEUE ======================\n");
+    printf("+--------------------------------+\n");
+    printf("|          ENTER OPTION          |\n");
+    printf("+================================+\n");
+    printf("| OPCAO  | OPERACAO              |\n");
+    printf("+================================+\n");
+    printf("| 1 -    | PUSH                  |\n");
+    printf("| 2 -    | POP                   |\n");
+    printf("| 3 -    | TOP                   |\n");
+    printf("| 4 -    | ENQUEUE               |\n");
+    printf("| 5 -    | DEQUEUE               |\n");
+    printf("| 0 -    | SAIR                  |\n");
+    printf("+--------------------------------+\n");
+    
 
     scanf("%d", &option);
 
-    switch (option)
+    int flag =1;
+
+    while(flag == 1 )
     {
-    case 1:
+        switch (option)
+        {
+        case 1:
 
-        printf("Enter a number to push: ");
-        scanf("%i", &num);
-        push(array, len, num);
-        for(int i = 0; i < len; i++){
+            printf("Enter a number to push: ");
 
+            scanf("%i", &num);
+
+            int * result = push(array, len, num);
+
+            printf("Result of push:");
+            for (int i = 0; i < len; i++) 
+            {
+                printf("\n[%i]", result[i]);
+            }
+
+            free(result);
+            break;
+
+        case 2:
+
+            result = pop(array, len);
+
+            printf("Result of pop: ");
+            for (int i = 0; i < len - 1; i++) 
+            {
+                printf("\n[%i]", result[i]);
+            }
+
+            free(result);
+            break;
+
+        case 3:
             
+                result = top(array, len);
+                printf("Result of top: %i", result);
+
+                free(result);
+                break;
+            
+        case 4:
+        
+            printf("Enter a number to enqueue: ");
+
+            scanf("%i", &num);
+
+            result = enqueue(array, len, num);
+
+            printf("Result of enqueue: ");
+            for (int i = 0; i < len; i++) 
+            {
+                printf("%i ", result[i]);
+
+            }
+
+            free(result);
+            break;
+
+        case 5:
+
+            result = pop(array, len);
+
+            printf("Result of dequeue: ");
+
+            for (int i = 0; i < len - 1; i++) 
+            {
+                printf("%i ", result[i]);
+            }
+
+            free(result);
+            break;   
+            
+
+        case 0:
+
+            printf("okay!!");
+            break;
+    
         }
-    
-        break;
-    
-    default:
-        break;
     }
-
-    
-
-
 }
