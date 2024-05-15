@@ -31,8 +31,9 @@ int main()
     while(flag == 1 )
     {
         switch (option)
-        {
-        case 1:
+        {    
+            
+        case 1: //add um elemnto no início da pilha
 
             printf("Enter a number to push: ");
 
@@ -49,7 +50,7 @@ int main()
             free(result);
             break;
 
-        case 2:
+        case 2: //remove o elemento do topo da pilha
 
             result = pop(array, len);
 
@@ -62,7 +63,7 @@ int main()
             free(result);
             break;
 
-        case 3:
+        case 3: //retorna o elemnto do topo da pilha sem removê-lo
             
                 result = top(array, len);
                 printf("Result of top: %i", result);
@@ -70,7 +71,7 @@ int main()
                 free(result);
                 break;
             
-        case 4:
+        case 4:  //add um lemento ao incio da fila
         
             printf("Enter a number to enqueue: ");
 
@@ -88,7 +89,7 @@ int main()
             free(result);
             break;
 
-        case 5:
+        case 5: //remove um elemento do inicio da fila
 
             result = pop(array, len);
 
