@@ -1,0 +1,23 @@
+biblioteca de coleções e processamento de listas
+lib:
+
+classes:
+
+- List<T> : ArrayList<T>, LinkedList<T>
+tem:
+get(int), set(int, T), add(T)
+
+- arraylist<>
+- linkedlist<>
+queue:
+tem:
+enqueue(T)
+dequeue()
+-stack<t>
+tem:
+push(int, T)
+pop()
+-HASH<t>
+tem:
+add(int ,t )
+get(t)
