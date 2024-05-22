@@ -1,0 +1,31 @@
+O projeto consiste em desenvolver um sistema simples de gestão de uma biblioteca que abrange todos os conceitos listados. O sistema terá funcionalidades para gerenciar livros, usuários, e empréstimos, permitindo a aplicação dos conceitos de programação em Java.
+
+Funcionalidades Principais
+Gerenciamento de Livros
+
+Adicionar, remover e listar livros.
+Operações matemáticas (potência e raiz) para calcular estatísticas dos livros.
+Gerenciamento de Usuários
+
+Adicionar, remover e listar usuários.
+Empréstimo de Livros
+
+Realizar empréstimo de livros de um usuário para um livro.
+Listar livros emprestados por usuário.
+Estrutura de Classes
+Classes Principais
+
+Biblioteca (contém listas de livros e usuários)
+Livro (informações do livro)
+Usuario (informações do usuário)
+Emprestimo (relaciona um usuário a um livro)
+Relações
+
+Um para um: Cada empréstimo relaciona um usuário a um livro.
+Um para muitos: Um usuário pode emprestar muitos livros.
+Detalhes do Código
+Operações de Potência e Raiz com a classe Math
+
+
+Enum e for each:
+Crie um enum DiaDaSemana com os dias da semana. Em seguida, crie uma classe Main com um método que itere sobre todos os dias da semana usando um loop for each e imprima cada dia.
