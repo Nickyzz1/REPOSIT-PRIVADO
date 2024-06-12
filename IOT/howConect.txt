@@ -1,0 +1,12 @@
+- VSS ao GND do esp
+- VDD ap 3V3 do esp
+- VO ao pino central do potenciômetro (para ajustar o contraste). Os outros dois pinos do potenciômetro vão para VSS e VDD
+- RS ao pino GPIO 14 do esp
+- RW ao GND do esp
+- E ao pino GPIO 13 do esp
+- D4 ao pino GPIO 12 do esp
+- D5 ao pino GPIO 27 do esp
+- D6 ao pino GPIO 26 do esp
+- D7 ao pino GPIO 25 do esp
+- A (Anodo do LED backlight) ao 3V3 do esp através do resistor de 220 own
+- K (Catodo do LED backlight) ao GND do esp
