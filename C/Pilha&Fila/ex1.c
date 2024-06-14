@@ -1,115 +1,129 @@
 #include <stdio.h>
-#include "header.h"
-// Desenvolva os métodos de cada um dos dos tipos de estruturas de
-// dados(pilha e fila) e aplique em um programa da linguagem C. Utilize uma
-// header para a criação das funções.
+#include <stdlib.h>
+
+struct Responsavel{
+    char name[15];
+    char lastName[20];
+    int birth;
+    char cpf[30];
+};
+
+struct Aluno{
+    char name[15];
+    char lastName[20];
+    int birth; //pela data de nascimnento
+    struct Responsavel responsavel;
+};
+
+struct Aluno * add(struct Aluno * arr, int * n, int toAdd)
+{
+    int year;
+    int born;
+    for(int i = 0; i < toAdd; i++)
+    {
+        printf("\nEnter a name: ");
+        scanf("%s", arr[i].name);
+        printf("\nEnter a last name: ");
+        scanf("%s", arr[i].lastName);
+        printf("\nEnter a born data: ");
+        scanf("%d", &year);
+        born = 2024 - year;
+        arr[i].birth = born;
+        printf("%s", "\n");
+        printf("\nEnter the name of responsable: ");
+        scanf("%s", arr[i].responsavel.name);
+        printf("\nEnter a last name of responsable: ");
+        scanf("%s", arr[i].responsavel.lastName);
+        printf("\nEnter a born data: ");
+        scanf("%d", &year);
+        born = 2024 - year;
+        arr[i].responsavel.birth = born;
+        printf("\nEnter a cpf: ");
+        scanf("%s", arr[i].responsavel.cpf);
+    }
+    *n += toAdd;
+    return arr;
+}
+
+// void display(struct Aluno * arr, int n)
+// {
+//     for(int i = 0; i < n; i++)
+//     {
+//         printf("\nThe student name: %s", arr[i].name);
+//         printf("\nThe student last name: %s", arr[i].lastName);
+//         printf("\nThe student age: %i", arr[i].birth);
+//         printf("\nThe students name responsable: %s", arr[i].responsavel.name);
+//         printf("\nThe students last name responsable: %s", arr[i].responsavel.lastName);
+//         printf("\nThe students responsable age: %i", arr[i].responsavel.birth);
+//         printf("\nThe students responsable cpf: %s", arr[i].responsavel.cpf);
+//         printf("%s", "\n");
+//     }
+// }
+
 int main()
 {
+    int n;
+    int toAdd;
+    printf("Enter how many students you want to add:");
+    scanf("%d", &toAdd);
+    struct Aluno *arr = (struct Aluno*)malloc(sizeof(struct Aluno)*(n + toAdd));
     int option;
-    int num;
-    int array[] = {2,3,4,5,6,7,8,9,0};
-    int len = sizeof(array)/sizeof(array[0]);
 
-    int flag =1;
-
-    while(flag == 1 )
+    while(1)
     {
-        
-        printf("\n+--------------------------------+\n");
-        printf("|          ENTER OPTION          |\n");
-        printf("+================================+\n");
-        printf("| OPCAO  | OPERACAO              |\n");
-        printf("+================================+\n");
-        printf("| 1 -    | PUSH                  |\n");
-        printf("| 2 -    | POP                   |\n");
-        printf("| 3 -    | TOP                   |\n");
-        printf("| 4 -    | ENQUEUE               |\n");
-        printf("| 5 -    | DEQUEUE               |\n");
-        printf("| 0 -    | SAIR                  |\n");
-        printf("+--------------------------------+\n");
-        
+        printf("\n======================\n");
+        printf("\n0 - exit ======================\n");
+        printf("\n1 - add student ======================\n");
+        printf("\n2 - display(ficha)======================\n");
         scanf("%d", &option);
 
-            switch (option)
-            {    
-                
-            case 1: //add um elemnto no início da pilha
-
-                printf("Enter a number to push: ");
-
-                scanf("%i", &num);
-
-                int * result = push(array, len, num);
-
-                printf("Result of push:");
-                for (int i = 0; i < len; i++) 
-                {
-                    printf("\n[%i]", result[i]);
-                }
-
-                free(result);
-                break;
-
-            case 2: //remove o elemento do topo da pilha
-
-                result = pop(array, len);
-
-                printf("Result of pop: ");
-                for (int i = 0; i < len - 1; i++) 
-                {
-                    printf("\n[%i]", result[i]);
-                }
-
-                free(result);
-                break;
-
-            case 3: //retorna o elemnto do topo da pilha sem removê-lo
-                
-                    result = top(array, len);
-                    printf("Result of top: %i", result);
-
-                    free(result);
-                    break;
-                
-            case 4:  //add um lemento ao incio da fila
-            
-                printf("Enter a number to enqueue: ");
-
-                scanf("%i", &num);
-
-                result = enqueue(array, len, num);
-
-                printf("Result of enqueue: ");
-                for (int i = 0; i < len; i++) 
-                {
-                    printf("%i ", result[i]);
-
-                }
-
-                free(result);
-                break;
-
-            case 5: //remove um elemento do inicio da fila
-
-                result = pop(array, len);
-
-                printf("Result of dequeue: ");
-
-                for (int i = 0; i < len - 1; i++) 
-                {
-                    printf("%i ", result[i]);
-                }
-
-                free(result);
-                break;   
-                
-
-            case 0:
-
-                printf("okay!!");
-                flag = 0;
-                break;
-        
+        if(option == 0)
+        {
+            break;
+        }
+        else if(option == 1)
+        {
+            printf("\nNow let go to add the students");
+            add(arr, &n, toAdd);
+        }
+        else if(option == 2)
+        {
+            for(int i = 0; i < n; i++)
+            {
+                printf("\nThe student name: %s", arr[i].name);
+                printf("\nThe student last name: %s", arr[i].lastName);
+                printf("\nThe student age: %i", arr[i].birth);
+                printf("\nThe students name responsable: %s", arr[i].responsavel.name);
+                printf("\nThe students last name responsable: %s", arr[i].responsavel.lastName);
+                printf("\nThe students responsable age: %i", arr[i].responsavel.birth);
+                printf("\nThe students responsable cpf: %s", arr[i].responsavel.cpf);
+                printf("%s", "\n");
             }
+        }
+        else
+        {
+            printf("Enter a valid option");
+
+        }
     }
+    free(arr);
 }
+
+//free
+
+// Faça um programa para uma escola que leia informações de alunos de uma escola, onde as seguintes informações são necessárias:
+
+// Aluno:
+// Nome
+// Sobrenome
+// Idade(Calculada pela data de nascimento)
+// Responsável
+
+// Responsável
+// Nome
+// Sobrenome
+// Idade(Calculada pela data de nascimento)
+// CPF
+
+// Imprima uma ficha do aluno cadastrado dentro de um arquivo.
+
