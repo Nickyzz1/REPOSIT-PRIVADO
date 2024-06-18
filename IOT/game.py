@@ -80,15 +80,11 @@ lcd_puts("N")
 button = machine.Pin(34, machine.Pin.IN)
 
 # Função move() que coloca o caractere ";" na próxima posição
-def move():
-    lcd_goto(1, 15)
+def move(i):
+    time.sleep(0.5)
+    lcd_goto(1, i)
     lcd_puts(";")
-    for i in range(1, 16):
-        time.sleep(0.5)
-        y = 16 - i 
-        lcd_goto(1, y )
-        lcd_puts(";")
-        clear_line(y)
+    clear_line(i)
              
 def jump():
     lcd_command(0x01)
@@ -98,16 +94,22 @@ def jump():
     time.sleep(0.5)
     lcd_command(0x01)
     
+i = 15
+
 while True:
+    move(i)
+    i -= 1
+    time.sleep(0.1)
     if button.value() == 1:
         jump()
     elif button.value() == 0:
         time.sleep(0.1)
         lcd_goto(1, 0)
         lcd_puts("N")
-    move()
+
      
     #time.sleep(0.5)  # Debounce do botão
 #    move()  # Move o caractere ";" para a posição correta
 #    time.sleep(0.5)  # Pequena pausa para evitar loop rápido demais
+
 
