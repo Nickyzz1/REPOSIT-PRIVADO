@@ -1,0 +1,36 @@
+APRENDIZADO SUPERVISIONADO
+
+- VALORES DISCRETOS: prever valores categoicos, categoricos: medicamento, comida --> GERALMENTE USADO EM PROBLEMAS DE CLASSIFICAÇÃO. como classificar emails como spam e não spam. SÓ VARIAM ENTRE QUANTIDADES EXISTENTES NO BANDO
+
+Número de alunos em uma sala de aula: Pode ser 20, 25, 30, mas não 20.5 ou 25.3.
+Resultado de um dado: Pode ser 1, 2, 3, 4, 5 ou 6, mas não 2.5 ou 3.7.
+Tipos de frutas em um cesto: Maçã, banana, laranja (categorias distintas).
+
+- VALORES CONTÍNUOS: valores espalhados sem categoria, predizer o valor de um metro quadrado daq a dois meses --> PODEM ASSUMIR QUALQUER VALOR dentro de um intervalo e são infinitos  --> GERALEMNTE PARA PREVER VALORES, ISSO É UM PROBLEMA DE REGRESSÃO USADO EM MACHINE LEARNING
+
+EXEMPLOS:
+
+Número de carros em um estacionamento (discreto):
+
+Pode ser 50, 75, 100, etc. Você conta os carros e não pode ter 50.5 carros.
+Distância percorrida por um carro (contínuo):
+
+Pode ser 15.7 km, 20.3 km, 25 km, etc. A distância pode ser medida com qualquer nível de precisão.
+
+RÓTULOS DE APRENDIZAGEM SUPERVISIONADA:
+
+features = variáveis de entrada --> ex, em um hospital que a ia deve escolher qual o melhor remédio ela tem alguns dados de entradac para decidir: ex: idade,s exo, pressão arterial e colesterol -->< com base nesses dados de entrada a ia irá decidir qual medicamento deve ser mais efetivo
+classes = os valores possíevsid e labels ex: droga y, drgoga x e droga z;
+label -> é o que rotula o trratamento do paciente, a resposta --> ex: droga z
+valor independete = dado
+valor dependente = previsão de acordo com os dados
+
+aprendizado supervisonado:
+
+-DATAPOINTS : cada linha da tabela usada de exemplo
+-ALGORITIMO: o que eu uso para treinar, as tableas por exemplo
+-MODELO: a ia treinada, a resposta
+-RESIDUOS = ERROS
+
+REDE NEURAL:
+-CAMADA DE ENTRADA ESSTÁ CONECTADO COM A CAMADE OCULTA QUE ESTÁ CONECTADA COM A CAMADA DA SAÍDA
