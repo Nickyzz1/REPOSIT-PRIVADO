@@ -173,6 +173,7 @@ while True:
             print(f"seu score foi: {score}")
             count = 0
             informacao = {
+                "Player": player,
                 "Score": score
             }
             enviarFire(informacao)
@@ -183,7 +184,7 @@ while True:
                 #count = 0
                 Continue = True
                 score += 1
-                print("user acertou o padrão")
+                print(f"{player} acertou o padrão")
                 print(f"Score : {score}")
                 if Continue == True:
                     rounds += 1
