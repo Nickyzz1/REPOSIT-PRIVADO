@@ -1,0 +1,14 @@
+nicolle:
+smarthome: 
+- livingroom
+- ofice
+-principlaroom
+
+pirincipal light, tempratire, ontv, humidade
+
+onde eu vou alterar os vcalores precisa ter id
+pegar po dado do banco de dadfos e colocar na web
+- mudar dadfo do bando de dados pela web
+- conectar a esp com a web
+
+id local

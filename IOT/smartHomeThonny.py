@@ -57,6 +57,7 @@ def enviarFire(data):
     response.close()
 
 def onTv():
+    global countTv, buttonStateTv
     countTv += 1
     if countTv % 2 == 1:
         buttonStateTv = 1
@@ -68,7 +69,7 @@ def onTv():
         return buttonStateTv
 
 def onLed():
-    
+    global countLed, buttonStateLed
     countLed += 1
     if countLed % 2 == 1:
         buttonStateLed = 1
@@ -84,19 +85,38 @@ def read_dht11():
     while True:
         try:
             if buttonLed.value() == 1:
+                global ledState
                 ledState = onLed()
-                print(f"led estate: {ledState}")
+                print(f"led state: {ledState}")
             if buttonTv.value() == 1:
+                global tvState
                 tvState = onTv()
-                print(f"tv estate: {tvState}")
-            
-            dht_sensor.measure()
-            temp = dht_sensor.temperature()
-            hum = dht_sensor.humidity()
+                print(f"tv state: {tvState}")
+            #dht_sensor.measure()
+            #temp = dht_sensor.temperature()
+            #hum = dht_sensor.humidity()
+            temp = "30c"
+            hum = "95 %"
             informacao = {
-            "temperature":temp,
-            "humidity" : hum
-           }
+                "LivingRoom": {
+                "temperature": temp,
+                "humidity": hum,
+                "light": ledState,
+                "tv": tvState
+                },
+                "Office": {
+                "temperature": temp,
+                "humidity": hum,
+                "light": ledState,
+                "tv": tvState
+                },
+                "PrincipalRoom": {
+                "temperature": temp,
+                "humidity": hum,
+                "light": ledState,
+                "tv": tvState
+                }
+            }
             conectarWifi()
             enviarFire(informacao)
             
@@ -105,13 +125,7 @@ def read_dht11():
             print("Falha na leitura do sensor:", e)
                          
         # Aguarda dois segundos antes de ler novamente
-        time.sleep(2)
+        time.sleep(1)
 
 # Chama a função principal
 read_dht11()
-
-
-
-
-
-
