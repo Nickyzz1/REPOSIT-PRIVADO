@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void appendToFile(const char *filename, const char *data) {
+void appendToFile(const char *filename, const char *name, int score) {
     FILE *file = fopen(filename, "a"); // "a" abre o arquivo para escrita no final (append)
     if (file == NULL) {
         printf("Could not open file %s for writing.\n", filename);
         return;
     }
 
-    fprintf(file, "%s\n", data); // Escreve a string data no arquivo
+    fprintf(file, "%s %d\n", name, score); // Escreve o nome e a pontuação no arquivo
     fclose(file); // Fecha o arquivo
 }
 
@@ -20,7 +20,7 @@ void printFileContents(const char *filename) {
     }
 
     printf("Contents of the file %s:\n", filename);
-    char line[256]; // lê cada linha do arquivo
+    char line[256]; // Buffer para ler cada linha do arquivo
 
     // Lê e imprime cada linha do arquivo
     while (fgets(line, sizeof(line), file)) {
@@ -32,13 +32,17 @@ void printFileContents(const char *filename) {
 
 int main() {
     const char *filename = "pontuation.txt";
-    char newPlayer[20];
+    char playerName[20];
+    int playerScore;
 
-    printf("Enter the name of the new player: ");
-    scanf("%s", newPlayer);
+    printf("Enter the player's nickname: ");
+    scanf("%s", playerName);
 
-    // Adiciona o novo jogador ao arquivo
-    appendToFile(filename, newPlayer);
+    printf("Enter the player's score: ");
+    scanf("%d", &playerScore);
+
+    // Adiciona o nome e a pontuação do jogador ao arquivo
+    appendToFile(filename, playerName, playerScore);
 
     // Imprime o conteúdo atualizado do arquivo
     printFileContents(filename);
