@@ -20,9 +20,9 @@ tvLR.value(0)
 
 tvStateLR = 0
 ledStateLR = 0
-onTvLR = False
-onLedLR = False
+countTvLR = 0
 buttonStateTvLR = 0
+countLedLR = 0
 buttonStateLedLR = 0
 
 # office
@@ -36,9 +36,9 @@ tvOF.value(0)
 
 tvStateOF = 0
 ledStateOF = 0
-onTvOF = False
-onLedOF = False
+countTvOF = 0
 buttonStateTvOF = 0
+countLedOF = 0
 buttonStateLedOF = 0
 
 # principalRoom
@@ -52,9 +52,9 @@ tvPR.value(0)
 
 tvStatePR = 0
 ledStatePR = 0
-onTvPR = False
-onLedPR = False
+countTvPR = 0
 buttonStateTvPR = 0
+countLedPR = 0
 buttonStateLedPR = 0
 
 # Credenciais do WIFI
@@ -102,12 +102,12 @@ def reciveFire():
 
 # living room
 # ligar tv
-def onTvLR(onTvLr):
-    global buttonStateTvLR
-    if onTvLR == True or recivedData["LivingRoom"]["tv"] == 1:
+def onTvLR():
+    global countTvLR, buttonStateTvLR
+    countTvLR += 1
+    if countTvLR % 2 == 1 or recivedData["LivingRoom"]["tv"] == 1:
         buttonStateTvLR = 1
         tvLR.value(1)
-        onTvLR == False
         return buttonStateTvLR
     else:
         buttonStateTvLR = 0
@@ -130,9 +130,9 @@ def onLedLR():
 # office
 # ligar luz
 def onLedOF():
-    global onLedOF, buttonStateLedOF
-    onLedOF += 1
-    if onLedOF % 2 == 1 or recivedData["Office"]["light"] == 1 :
+    global countLedOF, buttonStateLedOF
+    countLedOF += 1
+    if countLedOF % 2 == 1 or recivedData["Office"]["light"] == 1 :
         buttonStateLedOF = 1
         ledOF.value(1)
         return buttonStateLedOF
@@ -143,9 +143,9 @@ def onLedOF():
     
 # ligar tv
 def onTvOF():
-    global onTvOF, buttonStateTvOF
-    onTvOF += 1
-    if onTvOF % 2 == 1 or recivedData["Office"]["tv"] == 1:
+    global countTvOF, buttonStateTvOF
+    countTvOF += 1
+    if countTvOF % 2 == 1 or recivedData["Office"]["tv"] == 1:
         buttonStateTvOF = 1
         tvOF.value(1)
         return buttonStateTvOF
@@ -157,9 +157,9 @@ def onTvOF():
 # principal room   
 # ligar tv
 def onTvPR():
-    global onTvPR, buttonStateTvPR
-    onTvPR += 1
-    if onTvPR % 2 == 1 or recivedData["PrincipalRoom"]["light"] == 1:
+    global countTvPR, buttonStateTvPR
+    countTvPR += 1
+    if countTvPR % 2 == 1 or recivedData["PrincipalRoom"]["light"] == 1:
         buttonStateTvPR = 1
         tvPR.value(1)
         return buttonStateTvPR
@@ -170,9 +170,9 @@ def onTvPR():
 
 # ligar luz
 def onLedPR():
-    global onLedPR, buttonStateLedPR
-    onLedPR += 1
-    if onLedPR % 2 == 1 or recivedData["PrinciRoom"]["light"] == 1:
+    global countLedPR, buttonStateLedPR
+    countLedPR += 1
+    if countLedPR % 2 == 1 or recivedData["PrinciRoom"]["light"] == 1:
         buttonStateLedPR = 1
         ledPR.value(1)
         return buttonStateLedPR
@@ -189,12 +189,35 @@ def read_dht11():
             recivedData = reciveFire()
 
             # living room
-            if buttonLedLR.value() == 1:
-                onLedLR = not onLedLR
-            if buttonLedOF.value() == 1:
-                onLedOF = not onLedOF
-            if buttonLedPR.value() == 1:
-                onLedPR = not onLedPR
+            if buttonLedLR.value() == 1 or recivedData["LivingRoom"]["light"] == 1:
+                global ledStateLR
+                ledStateLR = onLedLR()
+                print(f"led state: {ledStateLR}")
+            if buttonTvLR.value() == 1 or recivedData["LivingRoom"]["tv"] == 1:
+                global tvStateLR
+                tvStateLR = onTvLR()
+                print(f"tv state: {tvStateLR}")
+                
+            # office
+            if buttonLedOF.value() == 1 or recivedData["Office"]["light"] == 1:
+                global ledStateOF
+                ledStateOF = onLedOF()
+                print(f"led state: {ledStateOF}")
+            if buttonTvOF.value() == 1 or recivedData["Office"]["tv"] == 1:
+                global tvStateOF
+                tvStateOF = onTvOF()
+                print(f"tv state: {tvStateOF}")
+                
+            # principal room
+            if buttonLedPR.value() == 1 or recivedData["PrincipalRoom"]["light"] == 1:
+                global ledStatePR
+                ledStatePR = onLedPR()
+                print(f"led state: {ledStatePR}")
+            if buttonTvPR.value() == 1 or recivedData["PrincipalRoom"]["tv"] == 1:
+                global tvStatePR
+                tvStatePR = onTvPR()
+                print(f"tv state: {tvStatePR}")
+                
             # dht_sensor.measure()
             # temp = dht_sensor.temperature()
             # hum = dht_sensor.humidity()
@@ -233,4 +256,3 @@ def read_dht11():
 
 # Chama a função principal
 read_dht11()
-
