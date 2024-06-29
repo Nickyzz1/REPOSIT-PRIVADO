@@ -69,14 +69,17 @@ void displayPlayers(Player *players, int count) {
 }
 
 int main() {
+    char name[20];
+    double pontuation = 299;
     const char *filename = "players.txt";
     int numPlayers;
     Player *playerArray;
 
+    printf("Enter your nick name: ");
+    scanf("%s", name);
+
     // Adiciona alguns jogadores fictícios ao arquivo
-    appendToFile(filename, "kaki", 300);
-    appendToFile(filename, "oswaldocomch", 89);
-    appendToFile(filename, "wawa", 1);
+    appendToFile(filename, name, pontuation);
 
     // Lê os jogadores do arquivo e armazena em um array dinâmico
     playerArray = readPlayersFromFile(filename, &numPlayers);
