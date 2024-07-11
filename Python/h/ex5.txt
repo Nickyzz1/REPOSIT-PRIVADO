@@ -1,0 +1,14 @@
+Uma classe em programação é como um modelo ou um plano para criar objetos. Ela define características (atributos) e comportamentos (métodos) que os objetos dessa classe terão. Para ajudar a entender melhor, podemos usar analogias com itens do dia a dia:
+
+Carro:
+
+Classe: Define o que é um carro, como ele deve ser construído e quais funcionalidades deve ter (ex: motor, rodas, faróis).
+Objeto: Cada carro específico que é construído seguindo esse modelo. Cada carro pode ter cores diferentes (atributo), pode acelerar, frear, virar (métodos).
+Receita de Bolo:
+
+Classe: Define os ingredientes necessários, as etapas de preparo e o resultado final esperado (o bolo).
+Objeto: Cada vez que você segue essa receita para fazer um bolo específico, seguindo os passos definidos pela classe.
+Loja Online:
+
+Classe: Define o que é um produto na loja, quais informações ele deve ter (nome, preço, descrição) e quais operações podem ser realizadas com ele (adicionar ao carrinho, calcular desconto).
+Objeto: Cada produto específico que está à venda na loja, cada um com suas características definidas pela classe.
