@@ -1,85 +1,48 @@
-class Empresa:
-    def __init__(self, nome, cnpj, nacionalidade, presidente):
-        self.nome = nome
-        self.cnpj = cnpj
-        self.nacionalidade = nacionalidade
-        self.presidente = presidente
-        self.paises_atuacao = []
-        self.produtos = {}
+phoneList = {}
 
-    def retornar_nome_responsavel(self):
-        return self.presidente
+def includeName(name, phones):
+    global phoneList
+    phoneList = {name:f"{phones}"}
+    print(f"\n{phoneList}")
+    print("\ninsertion with sucessfully\n\n")
 
-    def retornar_paises_atuacao(self):
-        return self.paises_atuacao
+while True:
+    option = input("enter the option\n1 - add new name\n2 - update name\n3 - delete phone number from name\n4 - delete a name\n5- show list\n\n")
 
-    def pesquisar_pais_atuacao(self, pais):
-        return pais in self.paises_atuacao
+    if option ==  '1':
 
-    def adicionar_produto(self, nome, preco, descricao):
-        self.produtos[nome] = {"preco": preco, "descricao": descricao}
-
-    def retornar_relatorio_produtos(self):
-        return self.produtos
-
-    def pesquisar_produto_especifico(self, nome_produto):
-        return self.produtos.get(nome_produto, None)
-
-    def realizar_vistoria(self):
-        print(f"Vistoria na empresa {self.nome}")
-
-
-# Exemplo de uso da classe Empresa
-bosch = Empresa("Bosch", "123456789", "Alemanha", "João Schmidt")
-bosch.adicionar_produto("Furadeira", 299.99, "Furadeira elétrica potente")
-print(bosch.retornar_relatorio_produtos())
-
-class Area(Empresa):
-    def __init__(self, nome, sigla_setor, funcao, diretor, lucro, inicio_auditoria=None, fim_auditoria=None):
-        super().__init__(nome, '', '', '')  # Chamada ao construtor da classe pai (Empresa)
-        self.sigla_setor = sigla_setor
-        self.funcao = funcao
-        self.diretor = diretor
-        self.lucro = lucro
-        self.inicio_auditoria = inicio_auditoria
-        self.fim_auditoria = fim_auditoria
-
-    def retornar_nome_responsavel(self):
-        return self.diretor
-
-    def retornar_relatorio_financeiro(self):
-        return f"Relatório financeiro de {self.nome}: Lucro {self.lucro}"
-
-    def retornar_periodo_auditoria(self):
-        if self.inicio_auditoria and self.fim_auditoria:
-            return f"Período de auditoria: {self.inicio_auditoria} até {self.fim_auditoria}"
+        name = input("enter the name of person: ")
+        quant = input("enter the quantity of numbers you want to add at that person: ")
+        phones = []
+        for i in range(int(quant)):
+            number = input(f"enter the number {i}: ")
+            phones.append(number)
+        includeName(name, phones)
+        
+    elif option == '2':
+       
+        nameUp = input("enter a name in the list to add a number: ").lower()
+        if nameUp in phoneList:
+            update = input("\nName was found! Enter the index of the number:")
+            i
+            
         else:
-            return "Não está sendo auditada"
+            op = input("\nName not found! You want add this name?\n1 - YES\n2 - NO\n")
+            if op == '1':
+                name = input("enter the name of person: ")
+                quant = input("enter the quantity of numbers you want to add at that person: ")
+                phones = []
+                for i in range(int(quant)):
+                    number = input(f"enter the number {i}: ")
+                    phones.append(number)
+                includeName(name, phones)
+            else:
+                pass
 
-    def realizar_vistoria(self):
-        print(f"Vistoria na área {self.nome}")
-
-
-# Exemplo de uso da classe Area
-producao = Area("Produção", "PT", "Fabricação de ferramentas", "Maria Silva", 100000.0, "01/06/2024", "30/06/2024")
-print(producao.retornar_relatorio_financeiro())
-
-class Departamento(Area):
-    def __init__(self, nome, sigla_setor, funcao, gestor, quantidade_funcionarios):
-        super().__init__(nome, sigla_setor, funcao, gestor, 0)  # Chamada ao construtor da classe pai (Area)
-        self.quantidade_funcionarios = quantidade_funcionarios
-
-    def contratar_funcionario(self):
-        self.quantidade_funcionarios += 1
-
-    def realizar_treinamento(self):
-        print(f"Treinamento no departamento {self.nome}")
-
-    def realizar_vistoria(self):
-        print(f"Vistoria no departamento {self.nome}")
-
-
-# Exemplo de uso da classe Departamento
-qualidade = Departamento("Qualidade", "QMM", "Controle de Qualidade", "José Santos", 50)
-qualidade.contratar_funcionario()
-print(f"Quantidade de funcionários em Qualidade: {qualidade.quantidade_funcionarios}")
+    elif option == '3':
+        pass
+    elif option == '4':
+        pass
+    elif option == '5':
+        print(phoneList)
+    
