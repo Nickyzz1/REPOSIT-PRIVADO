@@ -1,0 +1,130 @@
+1. Conversão de Unidades
+Métodos estáticos para converter entre diferentes unidades de medida.
+
+python
+Copiar código
+class ConversaoUnidades:
+    @staticmethod
+    def celsius_para_fahrenheit(celsius):
+        return (celsius * 9/5) + 32
+
+    @staticmethod
+    def fahrenheit_para_celsius(fahrenheit):
+        return (fahrenheit - 32) * 5/9
+
+    @staticmethod
+    def km_para_milhas(km):
+        return km * 0.621371
+
+    @staticmethod
+    def milhas_para_km(milhas):
+        return milhas / 0.621371
+
+# Exemplos de uso
+print(ConversaoUnidades.celsius_para_fahrenheit(25))  # Saída: 77.0
+print(ConversaoUnidades.km_para_milhas(10))           # Saída: 6.21371
+2. Validação de Dados
+Métodos estáticos para validar diferentes tipos de dados.
+
+python
+Copiar código
+class ValidacaoDados:
+    @staticmethod
+    def validar_email(email):
+        import re
+        padrao = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+        return re.match(padrao, email) is not None
+
+    @staticmethod
+    def validar_telefone(telefone):
+        import re
+        padrao = r'^\+?1?\d{9,15}$'
+        return re.match(padrao, telefone) is not None
+
+# Exemplos de uso
+print(ValidacaoDados.validar_email("exemplo@dominio.com"))  # Saída: True
+print(ValidacaoDados.validar_telefone("+1234567890"))       # Saída: True
+3. Manipulação de Strings
+Métodos estáticos para operações comuns em strings.
+
+python
+Copiar código
+class ManipulacaoStrings:
+    @staticmethod
+    def inverter_string(s):
+        return s[::-1]
+
+    @staticmethod
+    def remover_espacos(s):
+        return s.replace(" ", "")
+
+    @staticmethod
+    def contar_vogais(s):
+        return sum(1 for char in s.lower() if char in 'aeiou')
+
+# Exemplos de uso
+print(ManipulacaoStrings.inverter_string("Python"))     # Saída: nohtyP
+print(ManipulacaoStrings.remover_espacos("Hello World")) # Saída: HelloWorld
+print(ManipulacaoStrings.contar_vogais("OpenAI"))        # Saída: 3
+4. Cálculos Matemáticos
+Métodos estáticos para cálculos matemáticos comuns.
+
+python
+Copiar código
+class Calculadora:
+    @staticmethod
+    def fatorial(n):
+        if n == 0:
+            return 1
+        else:
+            return n * Calculadora.fatorial(n-1)
+
+    @staticmethod
+    def potencia(base, expoente):
+        return base ** expoente
+
+    @staticmethod
+    def media(*args):
+        return sum(args) / len(args) if args else 0
+
+# Exemplos de uso
+print(Calculadora.fatorial(5))  # Saída: 120
+print(Calculadora.potencia(2, 3))  # Saída: 8
+print(Calculadora.media(1, 2, 3, 4))  # Saída: 2.5
+5. Operações com Listas
+Métodos estáticos para manipulação de listas.
+
+python
+Copiar código
+class OperacoesLista:
+    @staticmethod
+    def remover_duplicatas(lista):
+        return list(set(lista))
+
+    @staticmethod
+    def somar_elementos(lista):
+        return sum(lista)
+
+    @staticmethod
+    def encontrar_maximo(lista):
+        return max(lista)
+
+# Exemplos de uso
+print(OperacoesLista.remover_duplicatas([1, 2, 2, 3, 4, 4, 5]))  # Saída: [1, 2, 3, 4, 5]
+print(OperacoesLista.somar_elementos([1, 2, 3, 4, 5]))           # Saída: 15
+print(OperacoesLista.encontrar_maximo([1, 2, 3, 4, 5]))          # Saída: 5
+6. Geração de Identificadores Únicos
+Método estático para gerar identificadores únicos.
+
+python
+Copiar código
+import uuid
+
+class GeradorUUID:
+    @staticmethod
+    def gerar_uuid():
+        return str(uuid.uuid4())
+
+# Exemplo de uso
+print(GeradorUUID.gerar_uuid())  # Saída: um identificador UUID único
+Esses métodos estáticos podem ser usados em diversos contextos de programação e são úteis para uma variedade de tarefas comuns.
