@@ -101,3 +101,52 @@ Muu
 
 # super() em POO Python
 # O super() é uma função em Python que é usada para dar acesso aos métodos e atributos de uma classe pai ou superclasse.
+
+
+class company:
+    def __init__(self, name, cnpj, nacionalidade, responsavel, paises=[], prod=[]):
+        self.name = name
+        self.cnpj = cnpj
+        self.nacionalidade = nacionalidade
+        self.__responsavel = responsavel
+        self.__paises = paises
+        self.prod = prod
+
+    def getResponsavel(self):
+        print(self.__responsavel)
+        return self.__responsavel
+
+    def getPaises(self):
+        return self.__paises
+
+    def search(self, pais):
+        if pais in self.__paises:
+            print('existe')
+        else:
+            print('não existe')
+
+    def addProd(self, prod):
+        self.prod.append(prod)
+
+    def relatorio(self):
+        print("retornando relatório")
+
+    def searchProd(self, prod):
+        if prod in self.prod:
+            print('existe')
+        else:
+            print('não existe')
+
+class area(company):
+    def __init__(self, name, cnpj, nacionalidade, responsavel, paises, prod, function, sigla, lucro, inicio, fim):
+        super().__init__(name, cnpj, nacionalidade, responsavel, paises, prod)
+        self.function = function
+        self.sigla = sigla
+        self.lucro = lucro
+        self.inicio = inicio
+        self.fim = fim
+
+# Exemplo de uso
+a1 = area('aa', '123456789', 'Brasil', 'João', ['Brasil', 'Argentina'], ['Produto1'], 'Gerenciamento', 'G', '10000', '2023-01-01', '2023-12-31')
+print(f"Nome: {a1.name}, Responsável: {a1.getResponsavel()}, Função: {a1.function}, Sigla: {a1.sigla}, Lucro: {a1.lucro}, Início: {a1.inicio}, Fim: {a1.fim}")
+
