@@ -1,4 +1,48 @@
 class Animal:
+    def __init__(self, nome, idade, peso):
+        self.nome = nome
+        self.idade = idade
+        self.peso = peso
+
+    def fazer_som(self):
+        raise NotImplementedError("Este método deve ser sobrescrito pelas subclasses")
+
+class Cachorro(Animal):
+    def __init__(self, nome, idade, peso, raca):
+        super().__init__(nome, idade, peso)
+        self.raca = raca
+
+    def fazer_som(self):
+        return "Au au"
+
+class Gato(Animal):
+    def __init__(self, nome, idade, peso, cor_pelo):
+        super().__init__(nome, idade, peso)
+        self.cor_pelo = cor_pelo
+
+    def fazer_som(self):
+        return "Miau"
+
+class Vaca(Animal):
+    def __init__(self, nome, idade, peso, producao_leite):
+        super().__init__(nome, idade, peso)
+        self.producao_leite = producao_leite
+
+    def fazer_som(self):
+        return "Muu"
+
+# Exemplos de uso
+meu_cachorro = Cachorro("Rex", 5, 30, "Labrador")
+meu_gato = Gato("Mimi", 3, 4, "Preto")
+minha_vaca = Vaca("Bela", 7, 600, "Alta")
+
+print(f"Meu cachorro {meu_cachorro.nome}, idade {meu_cachorro.idade}, pesa {meu_cachorro.peso}kg, raça {meu_cachorro.raca}, faz {meu_cachorro.fazer_som()}.")
+print(f"Meu gato {meu_gato.nome}, idade {meu_gato.idade}, pesa {meu_gato.peso}kg, cor do pelo {meu_gato.cor_pelo}, faz {meu_gato.fazer_som()}.")
+print(f"Minha vaca {minha_vaca.nome}, idade {minha_vaca.idade}, pesa {minha_vaca.peso}kg, produção de leite {minha_vaca.producao_leite}, faz {minha_vaca.fazer_som()}.")
+
+
+----------------------------
+class Animal:
     def __init__(self, nome):
         self.nome = nome
 
