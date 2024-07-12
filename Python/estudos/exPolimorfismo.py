@@ -1,3 +1,5 @@
+# Polimorfismo é um conceito em programação orientada a objetos (POO) que permite que diferentes classes utilizem métodos com o mesmo nome
+
 class Animal:
     def fazer_som(self):
         raise NotImplementedError("Este método deve ser sobrescrito pelas subclasses")
