@@ -40,7 +40,7 @@ print(f"Meu cachorro {meu_cachorro.nome}, idade {meu_cachorro.idade}, pesa {meu_
 print(f"Meu gato {meu_gato.nome}, idade {meu_gato.idade}, pesa {meu_gato.peso}kg, cor do pelo {meu_gato.cor_pelo}, faz {meu_gato.fazer_som()}.")
 print(f"Minha vaca {minha_vaca.nome}, idade {minha_vaca.idade}, pesa {minha_vaca.peso}kg, produção de leite {minha_vaca.producao_leite}, faz {minha_vaca.fazer_som()}.")
 
-
+# da erro se eu mencionar o super do pai e não colocar todos os argumentos que precisa
 ----------------------------
 class Animal:
     def __init__(self, nome):
