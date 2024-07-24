@@ -65,3 +65,30 @@ CARDINALIDADE : 0,0 - 0,1 - 0,N - 1,N - N,N
 
 INTEGRIDADE: TABELA PAI E FILHO, NÃO PODE SE EXCLUIR A TABELA PAI E DEIXAR A TABELA FILHO 
 -----------------------------------------------------
+
+exemplos de herança em modelagem:
+
+  Veículo
+   /   \
+Carro  Moto
+
+     Animal
+     /     \
+Mamífero  Réptil
+
+
+TIPOS DE DADOS EM SQL:
+
+- VARCHAR()
+- CHAR
+- INT
+- BIT
+- DATE TIME
+
+CONVERSSÃO:
+
+COVERT(tipoObjetivado, variável, parâmetro opcional)
+101 para data en
+103 para data brasil
+120 para hora
+
