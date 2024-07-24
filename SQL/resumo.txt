@@ -1,0 +1,61 @@
+ANOTAÇÕES: 
+
+------- BANCO DE DADOS -------
+
+O QUE É UM BD: É UM SISTEMA PARA ARMAZENAR E GERENCIAR DADOS
+PQ USAR UM BD: PARA ARMAZENAR DE FORMA SEGURA AS INFORMAÇÕES E TOMAR DECISÕES ACERTIVAS BEM EMBASADAS
+SGBD: SISTEMA DE GERENCIAMENTO DE BANCO DE DADOS:
+- MYSQL, SLQ SERVER, ORACLE(+ USADO)
+
+PASSO A PASSO: levantamento de requisitos, mapa conceitual lógico, e físico
+
+MODELOS: É UMA REPRESENTAÇÃO ABSTRATA DE COMO OS DADOS SE RELACIONAM --> RELACIONAL E NÃO RELACIONAL
+
+-----------------------------------------------------
+
+------- MODELO RELACIONAL VS NÃO RELACIONAL -------
+
+RELACIONAL: 
+-ORGANIZA DADOS EM TABELAS
+-CADA TABELA REPRESENTA UAM ENTIDADE
+-COLUNAS SÃO ATRIBUTOS DA ENTIDADE
+-AS LINHAS CONTEM OS REGISTROS(TUPLAS)
+
+NÃO RELACIONAL:
+- SNÃOS EGUE O MODELO DE TABELAS
+- ARMAZENA DADOS ATRAVPES DE DOCUMENTOS, GRAFOS, CHAVES-VALOR
+- EX: MONGODB, GOOGLE BIG TABLE
+
+-----------------------------------------------------
+
+------- MODELAGEM DE DADOS -------
+
+- É UM PROCESSO DE ORGANIZAR E ESTRUTURAR AS RELAÇÕES EM DIAGRAMAS VISUAIS(MER E DER)
+
+ACID: propriedades que garantem a consisteência dos dados
+- isolamento: ações ocorrerem separadas umas das outras sem conflitos
+- consistência: permite que uma ação ocorra em conformidade. A consistetncia garante que as regras de negócio sejam cumpridas, por exemplo, uma lugar que tem 10 maçãs para vender não pode vender 11 maçãs
+- atomicidade : se algo der errado break, não permite que continue se algo der errado (transaction)
+- durabilidade: após o commit todas as alterações precisam ficar no banco de dados
+
+ABRSTRAÇÃO:
+- UMA DAS ETAPAS É DO MER
+
+MER OU ER: MODELO ENTIDADE RELACIONAMENTO(TEM APENAS O BÁSICO), É UMA DAS ETAPASA DA ABSTRAÇÃO, QUANDO VC FAZ AS RELAÇÕES E O MER
+EX: MODELO CONCEITUAL
+DER: DIAGRAMA ENTIDADE RELACIONAMENTO, MAIS BEM ELABORADO QUE O MER, É A PARTE GRÁFICA(TIPO DA RELAÇÃO, ATRIBUTOS)
+EX: MODELO LÓGICO E FÍSICO
+
+DADO VS INFO:
+- DADO : ELEMENTO BRUTO NÃO PROCESSADO
+- INFO: RESULTADO DA INTERPRETAÇÃO ASSERTIVA DOS DADOS
+CARDINALIDADE : 0,0 - 0,1 - 0,N - 1,N - N,N
+
+ATRIBUTOS: 
+
+INTEGRIDADE:
+
+
+
+
+
