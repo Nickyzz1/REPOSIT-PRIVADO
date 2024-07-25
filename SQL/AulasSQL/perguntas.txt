@@ -1,0 +1,29 @@
+me dê 7 exerfcícios baseados nessas tabelas:
+
+tabelas de notas fiscais:
+cpf fk varchar, matricula fk varchar, data venda date, numero pk, imp.osto  float
+
+tabela itens notas fiscais:
+numero pk e fk int, cod-do-produto pk fk varchar, qwuantidade int, preço float
+
+tabela clientes:
+
+cpf pk varchar, nome varchar, endereco varchar, bairro varchar, cidade varchar, estado varchar, cep varchar, nascimento date, idade int, genero varchar, limite de credito float, volume de compra float, priemira compra bit
+
+
+tabela produtos 
+
+código do produto pk varchar , nome do produto varchar, embalagem varchar, tamanho varchar, sabor varchar, preco de lista float
+
+tabela de vdendedores :
+
+matricula pk varchar, nome varchar, percentual  comissão float, data de admissão date, de ferias bit, bairro
+
+
+
+
+
+
+
+considerando que eu tenho certas tabelas
+Group By - Agrupar todos os casos de determinado registro.
