@@ -20,10 +20,14 @@ tabela de vdendedores :
 matricula pk varchar, nome varchar, percentual  comissão float, data de admissão date, de ferias bit, bairro
 
 
+considerando que eu tenho certas tabelas e considerando esses exercícios :
+
+1 - Crie uma tabela log para armazenar todas as ocorrências de inserção que ocorrer na tabela Pessoa.
+Crie uma trigger que fará isso automaticamente.
+Dica: Utilize INSERTED
+
+2 - excluo um registrode uma tabela, como um cpf, eu excluo de todas as tabelas essas pessoas
 
 
 
-
-
-considerando que eu tenho certas tabelas
 Group By - Agrupar todos os casos de determinado registro.
