@@ -36,3 +36,37 @@ Excluir todos os dados da tabela ItemNotaFiscal daquele Cliente
 4 - Group By - Agrupar todos os casos de determinado registro.
 
 
+me de mais 7 exerc´cicios considerando que eu tenho esssas tabelas:
+
+evento(podem ser aula e reunão e etc):
+- ideveneto pk varchar, idsala fk varchar,descricao varchar, dtHrinicio datime, dtHrfim datatime
+equipamento:
+idequipamento pk varchar, nome varchar, tipo varchar, idsala fk 
+
+eventoequipamento:
+ideventoequipamento pk varchar, id evento fk varchar, id equipamento fk varchar
+
+
+eventoPessoa:
+
+ideventopessoa pk varchar, idevento fk varchar, id pessoa fk varchar, papelevento varchar(participante ou responsavel), presenca bit
+
+pessoa:
+idpessoa pk, nome varchar, categoria varchar
+
+sala:
+idsala pk varchar, nome varchar, capacidade int
+
+
+
+
+
+
+
+
+
+
+
+
+
+
