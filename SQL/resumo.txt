@@ -101,3 +101,13 @@ A função SUM é usada para calcular a soma total de um conjunto de valores.
 
 3. MAX
 A função MAX é usada para encontrar o valor máximo em um conjunto de valores.
+
+Combinação das Funções
+Você também pode combinar essas funções em uma única consulta para obter diversas métricas:
+
+SELECT Cliente,
+       COUNT(*) AS NumeroPedidos,
+       SUM(Valor) AS ValorTotal,
+       MAX(Valor) AS ValorMaximo
+FROM Pedidos
+GROUP BY Cliente;
