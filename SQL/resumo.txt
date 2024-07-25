@@ -247,3 +247,83 @@ SELECT * FROM Clientes WHERE Email IS NULL;
 sql
 Copiar código
 SELECT * FROM Clientes WHERE Email IS NOT NULL;
+
+
+Situação 1: Filtrar Resultados com Base em Outra Tabela
+Suponha que você tenha duas tabelas, Clientes e Pedidos, e você quer encontrar todos os clientes que fizeram pelo menos um pedido.
+
+Exemplo:
+sql
+Copiar código
+SELECT Nome, Email
+FROM Clientes
+WHERE ID IN (SELECT ClienteID FROM Pedidos);
+Situação 2: Encontrar Máximos ou Mínimos
+Você pode usar subselects para encontrar, por exemplo, o pedido com o maior valor.
+
+Exemplo:
+sql
+Copiar código
+SELECT *
+FROM Pedidos
+WHERE Valor = (SELECT MAX(Valor) FROM Pedidos);
+Situação 3: Correlação de Dados
+Você pode correlacionar dados de uma tabela com dados de outra tabela.
+
+Exemplo:
+Encontrar clientes que fizeram pedidos com valor acima da média.
+
+sql
+Copiar código
+SELECT Nome, Email
+FROM Clientes
+WHERE ID IN (SELECT ClienteID FROM Pedidos WHERE Valor > (SELECT AVG(Valor) FROM Pedidos));
+Usando AND, OR e NOT em SQL
+Os operadores AND, OR e NOT são usados para combinar condições em uma consulta SQL.
+
+AND
+O operador AND é usado para combinar duas ou mais condições, retornando os registros onde todas as condições são verdadeiras.
+
+Exemplo:
+Selecionar clientes com idade maior que 30 e nome começando com 'A'.
+
+sql
+Copiar código
+SELECT *
+FROM Clientes
+WHERE Idade > 30 AND Nome LIKE 'A%';
+OR
+O operador OR é usado para combinar duas ou mais condições, retornando os registros onde pelo menos uma das condições é verdadeira.
+
+Exemplo:
+Selecionar clientes com idade menor que 25 ou idade maior que 35.
+
+sql
+Copiar código
+SELECT *
+FROM Clientes
+WHERE Idade < 25 OR Idade > 35;
+NOT
+O operador NOT é usado para negar uma condição, retornando os registros onde a condição não é verdadeira.
+
+Exemplo:
+Selecionar clientes que não têm um e-mail registrado.
+
+sql
+Copiar código
+SELECT *
+FROM Clientes
+WHERE Email IS NOT NULL;
+Combinações de AND, OR e NOT
+Você pode combinar esses operadores para criar consultas complexas.
+
+Exemplo:
+Selecionar clientes com idade maior que 30 ou que tenham o nome começando com 'A', mas que não têm um e-mail registrado.
+
+sql
+Copiar código
+SELECT *
+FROM Clientes
+WHERE (Idade > 30 OR Nome LIKE 'A%') AND Email IS NOT NULL;
+
+
