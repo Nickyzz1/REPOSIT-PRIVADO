@@ -28,6 +28,11 @@ Dica: Utilize INSERTED
 
 2 - excluo um registrode uma tabela, como um cpf, eu excluo de todas as tabelas essas pessoas
 
+3 - CRIE uma STORED PROCEDURE que passado o ID de determinado CLIENTE como parâmetro deve:
+Excluir o Cliente
+Excluir todas as NotasFiscais desse Cliente
+Excluir todos os dados da tabela ItemNotaFiscal daquele Cliente
+
+4 - Group By - Agrupar todos os casos de determinado registro.
 
 
-Group By - Agrupar todos os casos de determinado registro.
