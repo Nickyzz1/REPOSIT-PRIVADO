@@ -628,4 +628,9 @@ Variáveis:
 Em SQL Server e MySQL, você pode declarar e atribuir variáveis, usar variáveis em consultas e alterar seus valores.
 Esses conceitos e comandos são essenciais para a manipulação e gestão de dados em SQL, permitindo operações de filtragem, exclusão e manipulação de dados e estruturas de maneira eficaz.
 
+herança total: reperesentei todos os possíveis
+herança parcial: representei apenas o que erra pertinente
+henraça sobreposiç~çaoi: os objetos podem ser quaslquer um dois doiis ou os dois ao mesmo tempo
+heranbça excllusiva: pode ser apenas um deles o objeto
+
 
