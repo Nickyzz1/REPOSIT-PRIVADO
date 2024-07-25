@@ -92,3 +92,12 @@ COVERT(tipoObjetivado, variável, parâmetro opcional)
 103 para data brasil
 120 para hora
 
+
+1. COUNT
+A função COUNT é usada para contar o número de linhas em um conjunto de resultados.
+
+2. SUM
+A função SUM é usada para calcular a soma total de um conjunto de valores.
+
+3. MAX
+A função MAX é usada para encontrar o valor máximo em um conjunto de valores.
