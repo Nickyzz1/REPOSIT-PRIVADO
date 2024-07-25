@@ -59,6 +59,284 @@ idsala pk varchar, nome varchar, capacidade int
 
 
 
+goa considere essses execplos de exerc´cicio:
+
+11 Crie uma função cujo o retorno deverá ser um único select e retornar uma
+tabela com:
+1- Quantidade de pessoas presentes no primeiro evento (mais antigo) que ocorreu.
+2- Nome da sala em que esse evento ocorreu.
+3- A Função será chamada com um parâmetro de busca. Como Aula,
+
+5 5. Preciso controlar se as reuniões estão sendo realizadas nas salas com a
+capacidade correta.
+Liste as Salas, Eventos, Capacidade das salas e Quantidade de Participantes.
+Crie uma coluna chamada "Avaliação da Capacidade" com dados como: "Ultrapassou o limite", "Limite ok".
+Com o código feito no exercício 5, que foi classificado com "ok" ou "ultrapassado" das pessoas que confirmaram estar presentes no evento.
+Encontre com Sub-Select, os eventos que iriam ter um limite ultrapassado, mas que não tiveram por causa de algumas pessoas que faltaram no
+dia.
+Crie uma VIEW para salvar esse Select.
+
+
+
+
+
+1. Função para Relatório do Primeiro Evento
+Descrição: Crie uma função que retorne uma tabela contendo:
+
+A quantidade de pessoas presentes no primeiro evento (mais antigo) que ocorreu.
+O nome da sala onde esse evento ocorreu.
+A função deve aceitar um parâmetro de busca para filtrar o tipo de evento (por exemplo, "Aula").
+
+Tabelas Usadas: evento, eventoPessoa, sala
+
+Exemplo de Função:
+
+sql
+Copiar código
+DELIMITER //
+
+CREATE FUNCTION RelatorioPrimeiroEvento(tipo_evento VARCHAR(255))
+RETURNS TABLE (QuantidadePessoas INT, NomeSala VARCHAR(255))
+BEGIN
+    RETURN (
+        SELECT 
+            COUNT(ep.idpessoa) AS QuantidadePessoas,
+            s.nome AS NomeSala
+        FROM 
+            evento e
+        JOIN 
+            sala s ON e.idsala = s.idsala
+        JOIN 
+            eventoPessoa ep ON e.idevento = ep.idevento
+        WHERE 
+            e.descricao = tipo_evento
+        AND 
+            e.dtHrinicio = (SELECT MIN(dtHrinicio) FROM evento WHERE descricao = tipo_evento)
+        GROUP BY 
+            s.nome
+    );
+END //
+
+DELIMITER ;
+2. Avaliação de Capacidade das Salas
+Descrição: Crie uma consulta para listar todas as salas com eventos, a capacidade das salas e a quantidade de participantes. Adicione uma coluna chamada "Avaliação da Capacidade" que indique se a capacidade foi ultrapassada ou se está dentro do limite.
+
+Tabelas Usadas: evento, eventoPessoa, sala
+
+Exemplo de Consulta:
+
+sql
+Copiar código
+SELECT 
+    s.nome AS NomeSala,
+    e.idevento AS IDEvento,
+    s.capacidade AS CapacidadeSala,
+    COUNT(ep.idpessoa) AS QuantidadeParticipantes,
+    CASE
+        WHEN COUNT(ep.idpessoa) > s.capacidade THEN 'Ultrapassou o limite'
+        ELSE 'Limite ok'
+    END AS AvaliacaoCapacidade
+FROM 
+    sala s
+JOIN 
+    evento e ON s.idsala = e.idsala
+LEFT JOIN 
+    eventoPessoa ep ON e.idevento = ep.idevento
+GROUP BY 
+    s.nome, e.idevento, s.capacidade;
+3. Identificação de Eventos com Limite Ultrapassado
+Descrição: Utilize um subselect para encontrar eventos que teriam ultrapassado o limite de capacidade se todas as pessoas confirmadas tivessem comparecido, mas não ultrapassaram o limite devido a ausências.
+
+Tabelas Usadas: evento, eventoPessoa, sala
+
+Exemplo de Consulta:
+
+sql
+Copiar código
+SELECT 
+    e.idevento AS IDEvento,
+    s.nome AS NomeSala,
+    s.capacidade AS CapacidadeSala,
+    (SELECT COUNT(idpessoa) FROM eventoPessoa WHERE idevento = e.idevento AND presenca = 1) AS ParticipantesConfirmados,
+    CASE
+        WHEN (SELECT COUNT(idpessoa) FROM eventoPessoa WHERE idevento = e.idevento) > s.capacidade THEN 'Ultrapassou o limite'
+        ELSE 'Limite ok'
+    END AS AvaliacaoCapacidade
+FROM 
+    evento e
+JOIN 
+    sala s ON e.idsala = s.idsala
+LEFT JOIN 
+    eventoPessoa ep ON e.idevento = ep.idevento
+GROUP BY 
+    e.idevento, s.nome, s.capacidade;
+4. Criar uma VIEW para Avaliação de Capacidade
+Descrição: Crie uma VIEW para armazenar a consulta que avalia a capacidade das salas, de modo que você possa reutilizar essa consulta facilmente.
+
+Tabelas Usadas: evento, eventoPessoa, sala
+
+Exemplo de Criação da VIEW:
+
+sql
+Copiar código
+CREATE VIEW AvaliacaoCapacidadeSalas AS
+SELECT 
+    s.nome AS NomeSala,
+    e.idevento AS IDEvento,
+    s.capacidade AS CapacidadeSala,
+    COUNT(ep.idpessoa) AS QuantidadeParticipantes,
+    CASE
+        WHEN COUNT(ep.idpessoa) > s.capacidade THEN 'Ultrapassou o limite'
+        ELSE 'Limite ok'
+    END AS AvaliacaoCapacidade
+FROM 
+    sala s
+JOIN 
+    evento e ON s.idsala = e.idsala
+LEFT JOIN 
+    eventoPessoa ep ON e.idevento = ep.idevento
+GROUP BY 
+    s.nome, e.idevento, s.capacidade;
+Resumo dos Exercícios
+Função para Relatório do Primeiro Evento: Cria uma função que retorna quantidade de pessoas e nome da sala para o evento mais antigo de um tipo específico.
+Avaliação de Capacidade das Salas: Consulta que lista salas e eventos com avaliação de capacidade.
+Identificação de Eventos com Limite Ultrapassado: Usa subselect para identificar eventos onde a capacidade teria sido ultrapassada se todos comparecessem.
+Criar uma VIEW para Avaliação de Capacidade: Cria uma VIEW para armazenar a consulta de avaliação de capacidade.
+Esses exercícios cobrem a criação de funções, consultas complexas, e a definição de VIEWs para facilitar a reutilização de consultas. Eles também incluem o uso de subselects e a avaliação condicional com o comando CASE WHEN.
+
+
+mais exemplos:
+
+4 4. Encontre a quantidade de eventos que cada pessoa participou.
+Os que mais participaram, aparecem por primeiro (Decrescente).
+Deve aparecer "0" para quem nunca participou (Vai ocorrer).
+
+3.2 Quanto tempo(Minutos) cada sala foi ou será utilizada no total?
+
+ChatGPT
+Claro! Vamos abordar esses dois novos desafios com base nas tabelas fornecidas.
+
+1. Quantidade de Eventos por Pessoa
+Descrição: Crie uma consulta que mostre a quantidade de eventos em que cada pessoa participou. A consulta deve listar as pessoas com o número de eventos em que participaram, ordenadas de forma decrescente pelo número de participações. Pessoas que nunca participaram devem aparecer com "0" como quantidade.
+
+Tabelas Usadas: pessoa, eventoPessoa
+
+Exemplo de Consulta:
+
+sql
+Copiar código
+SELECT 
+    p.idpessoa AS IDPessoa,
+    p.nome AS NomePessoa,
+    COALESCE(COUNT(ep.idevento), 0) AS QuantidadeEventos
+FROM 
+    pessoa p
+LEFT JOIN 
+    eventoPessoa ep ON p.idpessoa = ep.idpessoa
+GROUP BY 
+    p.idpessoa, p.nome
+ORDER BY 
+    QuantidadeEventos DESC;
+Explicação: Usamos LEFT JOIN para garantir que todas as pessoas sejam incluídas na lista, mesmo aquelas que não participaram de nenhum evento. O COALESCE substitui NULL por 0 para pessoas que nunca participaram.
+
+2. Tempo Total de Utilização das Salas
+Descrição: Calcule o tempo total (em minutos) que cada sala foi ou será utilizada, considerando a duração de todos os eventos que ocorreram ou estão programados para ocorrer na sala.
+
+Tabelas Usadas: evento, sala
+
+Exemplo de Consulta:
+
+sql
+Copiar código
+SELECT 
+    s.nome AS NomeSala,
+    SUM(TIMESTAMPDIFF(MINUTE, e.dtHrinicio, e.dtHrfim)) AS TempoTotalUtilizacao
+FROM 
+    sala s
+JOIN 
+    evento e ON s.idsala = e.idsala
+GROUP BY 
+    s.nome;
+Explicação: Utilizamos TIMESTAMPDIFF para calcular a diferença em minutos entre a data e hora de início e a data e hora de fim de cada evento. SUM é usado para somar o tempo total de utilização para cada sala.
+
+Resumo dos Exercícios
+Quantidade de Eventos por Pessoa: Consulta que usa LEFT JOIN e COALESCE para listar o número de eventos por pessoa, incluindo aquelas que não participaram de nenhum evento.
+Tempo Total de Utilização das Salas: Consulta que usa TIMESTAMPDIFF para calcular o tempo total de utilização de cada sala com base na duração dos eventos.
+Esses exercícios ajudam a aprofundar o entendimento sobre agregações, junções e manipulação de datas e horários em SQL.
+
+me mostre como é uma função que retorna algo normal e uma que retorna um,a tabela  em sql server
+ChatGPT
+Claro! Vou mostrar exemplos de funções no SQL Server que retornam um valor escalar e uma função que retorna uma tabela.
+
+1. Função que Retorna um Valor Escalar
+Descrição: Esta função retorna um valor único, como um número ou texto. Por exemplo, podemos criar uma função que retorna a quantidade total de eventos que ocorreram em uma sala específica.
+
+Exemplo de Função:
+
+sql
+Copiar código
+CREATE FUNCTION TotalEventosPorSala (
+    @SalaID VARCHAR(255)
+)
+RETURNS INT
+AS
+BEGIN
+    DECLARE @TotalEventos INT;
+
+    SELECT @TotalEventos = COUNT(*)
+    FROM evento
+    WHERE idsala = @SalaID;
+
+    RETURN @TotalEventos;
+END
+Como Usar:
+
+sql
+Copiar código
+SELECT dbo.TotalEventosPorSala('Sala101') AS TotalEventos;
+Explicação:
+
+CREATE FUNCTION TotalEventosPorSala define o nome da função e o parâmetro @SalaID que é usado para buscar os eventos.
+RETURNS INT especifica que a função retorna um valor inteiro.
+O SELECT @TotalEventos = COUNT(*) calcula a quantidade total de eventos para a sala fornecida.
+O RETURN @TotalEventos retorna o valor calculado.
+2. Função que Retorna uma Tabela
+Descrição: Esta função retorna um conjunto de resultados como uma tabela. Por exemplo, podemos criar uma função que retorna todos os eventos em uma sala específica.
+
+Exemplo de Função:
+
+sql
+Copiar código
+CREATE FUNCTION EventosPorSala (
+    @SalaID VARCHAR(255)
+)
+RETURNS TABLE
+AS
+RETURN (
+    SELECT 
+        idevento,
+        descricao,
+        dtHrinicio,
+        dtHrfim
+    FROM 
+        evento
+    WHERE 
+        idsala = @SalaID
+);
+Como Usar:
+
+sql
+Copiar código
+SELECT * FROM dbo.EventosPorSala('Sala101');
+Explicação:
+
+CREATE FUNCTION EventosPorSala define o nome da função e o parâmetro @SalaID.
+RETURNS TABLE especifica que a função retornará uma tabela.
+A cláusula RETURN define a consulta que fornece o conjunto de resultados da função.
+Resumo
+Função Escalar: Retorna um único valor (por exemplo, a quantidade total de eventos).
+Função Tabela: Retorna um conjunto de resultados como uma tabela (por exemplo, todos os eventos em uma sala específica).
+Esses exemplos mostram como criar e utilizar funções em SQL Server para retornar valores específicos ou conjuntos de dados, conforme a necessidade.
 
 
 
