@@ -111,3 +111,139 @@ SELECT Cliente,
        MAX(Valor) AS ValorMaximo
 FROM Pedidos
 GROUP BY Cliente;
+
+
+
+1. Igualdade (=)
+Compara se dois valores são iguais.
+
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade = 30;
+2. Diferença (<> ou !=)
+Compara se dois valores são diferentes.
+
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade <> 30;
+-- ou
+SELECT * FROM Clientes WHERE Idade != 30;
+3. Maior que (>)
+Compara se um valor é maior que outro.
+
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade > 30;
+4. Menor que (<)
+Compara se um valor é menor que outro.
+
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade < 30;
+5. Maior ou igual a (>=)
+Compara se um valor é maior ou igual a outro.
+
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade >= 30;
+6. Menor ou igual a (<=)
+Compara se um valor é menor ou igual a outro.
+
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade <= 30;
+7. BETWEEN
+Verifica se um valor está dentro de um intervalo.
+
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade BETWEEN 25 AND 35;
+8. IN
+Verifica se um valor está dentro de um conjunto de valores.
+
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Nome IN ('Alice', 'Bob', 'Charlie');
+9. LIKE
+Compara se um valor corresponde a um padrão. Comumente usado com caracteres curinga (% e _).
+
+% representa zero ou mais caracteres.
+_ representa um único caractere.
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Nome LIKE 'A%';
+-- Encontra nomes que começam com 'A'
+
+SELECT * FROM Clientes WHERE Nome LIKE '_lice';
+-- Encontra nomes que têm 'lice' como os últimos quatro caracteres, com qualquer primeiro caractere
+10. IS NULL e IS NOT NULL
+Verifica se um valor é NULL ou não.
+
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Email IS NULL;
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Email IS NOT NULL;
+Exemplo Prático com Tabela
+Vamos criar uma tabela Clientes e inserir alguns dados para usar nos exemplos:
+
+sql
+Copiar código
+CREATE TABLE Clientes (
+    ID INT PRIMARY KEY,
+    Nome VARCHAR(100),
+    Email VARCHAR(100),
+    Idade INT
+);
+
+INSERT INTO Clientes (ID, Nome, Email, Idade) VALUES
+(1, 'Alice', 'alice@example.com', 30),
+(2, 'Bob', 'bob@example.com', 25),
+(3, 'Charlie', 'charlie@example.com', 35),
+(4, 'David', 'david@example.com', 28),
+(5, 'Eve', NULL, 40);
+Exemplos de Consultas
+Igualdade (=):
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade = 30;
+Diferença (<> ou !=):
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade <> 30;
+Maior que (>):
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade > 30;
+Menor que (<):
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade < 30;
+Maior ou igual a (>=):
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade >= 30;
+Menor ou igual a (<=):
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade <= 30;
+BETWEEN:
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade BETWEEN 25 AND 35;
+IN:
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Nome IN ('Alice', 'Bob', 'Charlie');
+LIKE:
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Nome LIKE 'A%';
+IS NULL e IS NOT NULL:
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Email IS NULL;
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Email IS NOT NULL;
