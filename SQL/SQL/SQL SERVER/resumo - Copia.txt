@@ -1,0 +1,636 @@
+ANOTAÇÕES: 
+
+------- BANCO DE DADOS -------
+
+O QUE É UM BD: É UM SISTEMA PARA ARMAZENAR E GERENCIAR DADOS
+PQ USAR UM BD: PARA ARMAZENAR DE FORMA SEGURA AS INFORMAÇÕES E TOMAR DECISÕES ACERTIVAS BEM EMBASADAS
+SGBD: SISTEMA DE GERENCIAMENTO DE BANCO DE DADOS:
+- MYSQL, SLQ SERVER, ORACLE(+ USADO)
+
+PASSO A PASSO: levantamento de requisitos, mapa conceitual lógico, e físico
+ENTIDADES: SÃO COMO CLASSE(TABELAS, EX: CLIENTES...)
+ATRIBUTOS: SÃO COMO ATRIBUTOS DE POO(COLUNAS, EX: NOME, GÊNERO, NASCIMENTO...)
+
+MODELOS: É UMA REPRESENTAÇÃO ABSTRATA DE COMO OS DADOS SE RELACIONAM --> RELACIONAL E NÃO RELACIONAL
+
+-----------------------------------------------------
+
+------- MODELO RELACIONAL VS NÃO RELACIONAL -------
+
+RELACIONAL: 
+-ORGANIZA DADOS EM TABELAS
+-CADA TABELA REPRESENTA UAM ENTIDADE
+-COLUNAS SÃO ATRIBUTOS DA ENTIDADE
+-AS LINHAS CONTEM OS REGISTROS(TUPLAS)
+
+NÃO RELACIONAL:
+- NÃO SEGUE O MODELO DE TABELAS
+- ARMAZENA DADOS ATRAVPES DE DOCUMENTOS, GRAFOS, CHAVES-VALOR
+- EX: MONGODB, GOOGLE BIG TABLE
+
+RELACIONAMENTOS: SÃO CONEXÕES ENTRE AS ENTIDADES
+
+-----------------------------------------------------
+
+------- MODELAGEM DE DADOS -------
+
+- É UM PROCESSO DE ORGANIZAR E ESTRUTURAR AS RELAÇÕES EM DIAGRAMAS VISUAIS(MER E DER)
+
+ACID: propriedades que garantem a consisteência dos dados
+- isolamento: ações ocorrerem separadas umas das outras sem conflitos
+- consistência: permite que uma ação ocorra em conformidade. A consistetncia garante que as regras de negócio sejam cumpridas, por exemplo, uma lugar que tem 10 maçãs para vender não pode vender 11 maçãs
+- atomicidade : se algo der errado break, não permite que continue se algo der errado (transaction)
+- durabilidade: após o commit todas as alterações precisam ficar no banco de dados
+
+ABRSTRAÇÃO:
+- UMA DAS ETAPAS É DO MER
+
+MER OU ER: MODELO ENTIDADE RELACIONAMENTO(TEM APENAS O BÁSICO), É UMA DAS ETAPASA DA ABSTRAÇÃO, QUANDO VC FAZ AS RELAÇÕES E O MER
+EX: MODELO CONCEITUAL
+DER: DIAGRAMA ENTIDADE RELACIONAMENTO, MAIS BEM ELABORADO QUE O MER, É A PARTE GRÁFICA(TIPO DA RELAÇÃO, ATRIBUTOS)
+EX: MODELO LÓGICO E FÍSICO
+
+-----------------------------------------------------
+
+------- CAHVES E DADOS -------
+
+CHAVE PRIMÁRIA: 
+- PRIMÁRIA:É A CHAVE ID , A IDENTIDADE ÚNICA DE CADA TABELA
+- ESTRANGEIRA: É UMA CHAVE QUE REFERÊNCIA OUTRA TABELA
+
+DADO VS INFO:
+- DADO : ELEMENTO BRUTO NÃO PROCESSADO
+- INFO: RESULTADO DA INTERPRETAÇÃO ASSERTIVA DOS DADOS
+CARDINALIDADE : 0,0 - 0,1 - 0,N - 1,N - N,N
+
+INTEGRIDADE: TABELA PAI E FILHO, NÃO PODE SE EXCLUIR A TABELA PAI E DEIXAR A TABELA FILHO 
+-----------------------------------------------------
+
+exemplos de herança em modelagem:
+
+  Veículo
+   /   \
+Carro  Moto
+
+     Animal
+     /     \
+Mamífero  Réptil
+
+
+TIPOS DE DADOS EM SQL:
+
+- VARCHAR()
+- CHAR
+- INT
+- BIT
+- DATE TIME
+
+CONVERSSÃO:
+
+COVERT(tipoObjetivado, variável, parâmetro opcional)
+101 para data en
+103 para data brasil
+120 para hora
+
+
+1. COUNT
+A função COUNT é usada para contar o número de linhas em um conjunto de resultados.
+
+2. SUM
+A função SUM é usada para calcular a soma total de um conjunto de valores.
+
+3. MAX
+A função MAX é usada para encontrar o valor máximo em um conjunto de valores.
+
+Combinação das Funções
+Você também pode combinar essas funções em uma única consulta para obter diversas métricas:
+
+SELECT Cliente,
+       COUNT(*) AS NumeroPedidos,
+       SUM(Valor) AS ValorTotal,
+       MAX(Valor) AS ValorMaximo
+FROM Pedidos
+GROUP BY Cliente;
+
+
+
+1. Igualdade (=)
+Compara se dois valores são iguais.
+
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade = 30;
+2. Diferença (<> ou !=)
+Compara se dois valores são diferentes.
+
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade <> 30;
+-- ou
+SELECT * FROM Clientes WHERE Idade != 30;
+3. Maior que (>)
+Compara se um valor é maior que outro.
+
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade > 30;
+4. Menor que (<)
+Compara se um valor é menor que outro.
+
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade < 30;
+5. Maior ou igual a (>=)
+Compara se um valor é maior ou igual a outro.
+
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade >= 30;
+6. Menor ou igual a (<=)
+Compara se um valor é menor ou igual a outro.
+
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade <= 30;
+7. BETWEEN
+Verifica se um valor está dentro de um intervalo.
+
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade BETWEEN 25 AND 35;
+8. IN
+Verifica se um valor está dentro de um conjunto de valores.
+
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Nome IN ('Alice', 'Bob', 'Charlie');
+9. LIKE
+Compara se um valor corresponde a um padrão. Comumente usado com caracteres curinga (% e _).
+
+% representa zero ou mais caracteres.
+_ representa um único caractere.
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Nome LIKE 'A%';
+-- Encontra nomes que começam com 'A'
+
+SELECT * FROM Clientes WHERE Nome LIKE '_lice';
+-- Encontra nomes que têm 'lice' como os últimos quatro caracteres, com qualquer primeiro caractere
+10. IS NULL e IS NOT NULL
+Verifica se um valor é NULL ou não.
+
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Email IS NULL;
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Email IS NOT NULL;
+Exemplo Prático com Tabela
+Vamos criar uma tabela Clientes e inserir alguns dados para usar nos exemplos:
+
+sql
+Copiar código
+CREATE TABLE Clientes (
+    ID INT PRIMARY KEY,
+    Nome VARCHAR(100),
+    Email VARCHAR(100),
+    Idade INT
+);
+
+INSERT INTO Clientes (ID, Nome, Email, Idade) VALUES
+(1, 'Alice', 'alice@example.com', 30),
+(2, 'Bob', 'bob@example.com', 25),
+(3, 'Charlie', 'charlie@example.com', 35),
+(4, 'David', 'david@example.com', 28),
+(5, 'Eve', NULL, 40);
+Exemplos de Consultas
+Igualdade (=):
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade = 30;
+Diferença (<> ou !=):
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade <> 30;
+Maior que (>):
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade > 30;
+Menor que (<):
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade < 30;
+Maior ou igual a (>=):
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade >= 30;
+Menor ou igual a (<=):
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade <= 30;
+BETWEEN:
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Idade BETWEEN 25 AND 35;
+IN:
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Nome IN ('Alice', 'Bob', 'Charlie');
+LIKE:
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Nome LIKE 'A%';
+IS NULL e IS NOT NULL:
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Email IS NULL;
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Email IS NOT NULL;
+
+
+Situação 1: Filtrar Resultados com Base em Outra Tabela
+Suponha que você tenha duas tabelas, Clientes e Pedidos, e você quer encontrar todos os clientes que fizeram pelo menos um pedido.
+
+Exemplo:
+sql
+Copiar código
+SELECT Nome, Email
+FROM Clientes
+WHERE ID IN (SELECT ClienteID FROM Pedidos);
+Situação 2: Encontrar Máximos ou Mínimos
+Você pode usar subselects para encontrar, por exemplo, o pedido com o maior valor.
+
+Exemplo:
+sql
+Copiar código
+SELECT *
+FROM Pedidos
+WHERE Valor = (SELECT MAX(Valor) FROM Pedidos);
+Situação 3: Correlação de Dados
+Você pode correlacionar dados de uma tabela com dados de outra tabela.
+
+Exemplo:
+Encontrar clientes que fizeram pedidos com valor acima da média.
+
+sql
+Copiar código
+SELECT Nome, Email
+FROM Clientes
+WHERE ID IN (SELECT ClienteID FROM Pedidos WHERE Valor > (SELECT AVG(Valor) FROM Pedidos));
+Usando AND, OR e NOT em SQL
+Os operadores AND, OR e NOT são usados para combinar condições em uma consulta SQL.
+
+AND
+O operador AND é usado para combinar duas ou mais condições, retornando os registros onde todas as condições são verdadeiras.
+
+Exemplo:
+Selecionar clientes com idade maior que 30 e nome começando com 'A'.
+
+sql
+Copiar código
+SELECT *
+FROM Clientes
+WHERE Idade > 30 AND Nome LIKE 'A%';
+OR
+O operador OR é usado para combinar duas ou mais condições, retornando os registros onde pelo menos uma das condições é verdadeira.
+
+Exemplo:
+Selecionar clientes com idade menor que 25 ou idade maior que 35.
+
+sql
+Copiar código
+SELECT *
+FROM Clientes
+WHERE Idade < 25 OR Idade > 35;
+NOT
+O operador NOT é usado para negar uma condição, retornando os registros onde a condição não é verdadeira.
+
+Exemplo:
+Selecionar clientes que não têm um e-mail registrado.
+
+sql
+Copiar código
+SELECT *
+FROM Clientes
+WHERE Email IS NOT NULL;
+Combinações de AND, OR e NOT
+Você pode combinar esses operadores para criar consultas complexas.
+
+Exemplo:
+Selecionar clientes com idade maior que 30 ou que tenham o nome começando com 'A', mas que não têm um e-mail registrado.
+
+sql
+Copiar código
+SELECT *
+FROM Clientes
+WHERE (Idade > 30 OR Nome LIKE 'A%') AND Email IS NOT NULL;
+
+Comandos Comuns de Alteração de Estruturas
+ALTER TABLE: Usado para modificar uma tabela existente.
+CREATE TABLE: Usado para criar uma nova tabela.
+DROP TABLE: Usado para remover uma tabela.
+CREATE INDEX: Usado para criar um índice.
+DROP INDEX: Usado para remover um índice.
+Exemplos
+Adicionar uma Coluna:
+sql
+Copiar código
+ALTER TABLE Clientes ADD COLUMN Telefone VARCHAR(15);
+Modificar uma Coluna:
+sql
+Copiar código
+ALTER TABLE Clientes MODIFY COLUMN Nome VARCHAR(150);
+Remover uma Coluna:
+sql
+Copiar código
+ALTER TABLE Clientes DROP COLUMN Email;
+Criar uma Tabela:
+sql
+Copiar código
+CREATE TABLE Pedidos (
+    ID INT PRIMARY KEY,
+    ClienteID INT,
+    Valor DECIMAL(10, 2),
+    Data DATE,
+    FOREIGN KEY (ClienteID) REFERENCES Clientes(ID)
+);
+Remover uma Tabela:
+sql
+Copiar código
+DROP TABLE Pedidos;
+Criar um Índice:
+sql
+Copiar código
+CREATE INDEX idx_cliente_nome ON Clientes (Nome);
+Remover um Índice:
+sql
+Copiar código
+DROP INDEX idx_cliente_nome;
+
+
+Em SQL, a alteração de estruturas e a alteração de dados referem-se a diferentes tipos de operações que você pode realizar em um banco de dados.
+
+1. Alteração de Estruturas
+A alteração de estruturas envolve modificar a estrutura das tabelas e outros objetos no banco de dados. Isso inclui operações como adicionar, modificar ou remover colunas e tabelas. Essas operações são feitas usando comandos de definição de dados (DDL - Data Definition Language).
+
+Comandos Comuns de Alteração de Estruturas
+ALTER TABLE: Usado para modificar uma tabela existente.
+CREATE TABLE: Usado para criar uma nova tabela.
+DROP TABLE: Usado para remover uma tabela.
+CREATE INDEX: Usado para criar um índice.
+DROP INDEX: Usado para remover um índice.
+Exemplos
+Adicionar uma Coluna:
+sql
+Copiar código
+ALTER TABLE Clientes ADD COLUMN Telefone VARCHAR(15);
+Modificar uma Coluna:
+sql
+Copiar código
+ALTER TABLE Clientes MODIFY COLUMN Nome VARCHAR(150);
+Remover uma Coluna:
+sql
+Copiar código
+ALTER TABLE Clientes DROP COLUMN Email;
+Criar uma Tabela:
+sql
+Copiar código
+CREATE TABLE Pedidos (
+    ID INT PRIMARY KEY,
+    ClienteID INT,
+    Valor DECIMAL(10, 2),
+    Data DATE,
+    FOREIGN KEY (ClienteID) REFERENCES Clientes(ID)
+);
+Remover uma Tabela:
+sql
+Copiar código
+DROP TABLE Pedidos;
+Criar um Índice:
+sql
+Copiar código
+CREATE INDEX idx_cliente_nome ON Clientes (Nome);
+Remover um Índice:
+sql
+Copiar código
+DROP INDEX idx_cliente_nome;
+2. Alteração de Dados
+A alteração de dados envolve manipular os dados armazenados nas tabelas. Isso inclui operações como inserir, atualizar ou excluir registros. Essas operações são feitas usando comandos de manipulação de dados (DML - Data Manipulation Language).
+
+Comandos Comuns de Alteração de Dados
+INSERT: Usado para inserir novos registros em uma tabela.
+UPDATE: Usado para atualizar registros existentes em uma tabela.
+DELETE: Usado para remover registros de uma tabela.
+Exemplos
+Inserir Dados:
+sql
+Copiar código
+INSERT INTO Clientes (ID, Nome, Email, Idade) VALUES (6, 'Frank', 'frank@example.com', 45);
+Atualizar Dados:
+sql
+Copiar código
+UPDATE Clientes SET Email = 'nova@example.com' WHERE ID = 1;
+Remover Dados:
+sql
+Copiar código
+DELETE FROM Clientes WHERE ID = 6;
+Resumo
+Alteração de Estruturas: Refere-se a mudanças na estrutura do banco de dados, como tabelas e índices, usando comandos DDL.
+Alteração de Dados: Refere-se a mudanças nos dados armazenados dentro das tabelas do banco de dados, usando comandos DML.
+Exemplos Completos
+Estrutura Inicial das Tabelas
+sql
+Copiar código
+CREATE TABLE Clientes (
+    ID INT PRIMARY KEY,
+    Nome VARCHAR(100),
+    Email VARCHAR(100),
+    Idade INT
+);
+
+CREATE TABLE Pedidos (
+    ID INT PRIMARY KEY,
+    ClienteID INT,
+    Valor DECIMAL(10, 2),
+    Data DATE,
+    FOREIGN KEY (ClienteID) REFERENCES Clientes(ID)
+);
+
+INSERT INTO Clientes (ID, Nome, Email, Idade) VALUES
+(1, 'Alice', 'alice@example.com', 30),
+(2, 'Bob', 'bob@example.com', 25),
+(3, 'Charlie', 'charlie@example.com', 35);
+
+INSERT INTO Pedidos (ID, ClienteID, Valor, Data) VALUES
+(1, 1, 150.00, '2023-01-10'),
+(2, 2, 200.00, '2023-01-15');
+Alteração de Estruturas
+Adicionar uma Coluna:
+sql
+Copiar código
+ALTER TABLE Clientes ADD COLUMN Telefone VARCHAR(15);
+Modificar uma Coluna:
+sql
+Copiar código
+ALTER TABLE Clientes MODIFY COLUMN Nome VARCHAR(150);
+Remover uma Coluna:
+sql
+Copiar código
+ALTER TABLE Clientes DROP COLUMN Email;
+Criar um Índice:
+sql
+Copiar código
+CREATE INDEX idx_cliente_nome ON Clientes (Nome);
+Alteração de Dados
+Inserir Dados:
+sql
+Copiar código
+INSERT INTO Clientes (ID, Nome, Email, Idade) VALUES (4, 'David', 'david@example.com', 28);
+Atualizar Dados:
+sql
+Copiar código
+UPDATE Clientes SET Idade = 32 WHERE Nome = 'Alice';
+Remover Dados:
+sql
+Copiar código
+DELETE FROM Clientes WHERE Nome = 'Bob';
+Conclusão
+Compreender a diferença entre a alteração de estruturas e a alteração de dados é crucial para a gestão eficaz de um banco de dados. A alteração de estruturas permite modificar a forma como os dados são armazenados e acessados, enquanto a alteração de dados permite manipular os dados reais dentro dessas estruturas.
+
+1. Usando CASE WHEN
+A cláusula CASE em SQL permite realizar operações condicionais e retornar valores baseados em condições. É útil para criar colunas calculadas, categorizar dados, e muito mais.
+
+Exemplo 1: Categorizar Idades
+Você pode usar CASE para categorizar idades em faixas etárias.
+
+sql
+Copiar código
+SELECT Nome,
+       Idade,
+       CASE
+           WHEN Idade < 18 THEN 'Menor de idade'
+           WHEN Idade BETWEEN 18 AND 65 THEN 'Adulto'
+           ELSE 'Idoso'
+       END AS FaixaEtaria
+FROM Clientes;
+Exemplo 2: Classificar Vendas
+Você pode classificar vendas em categorias baseadas no valor.
+
+sql
+Copiar código
+SELECT ID,
+       Valor,
+       CASE
+           WHEN Valor < 100 THEN 'Baixa'
+           WHEN Valor BETWEEN 100 AND 500 THEN 'Média'
+           ELSE 'Alta'
+       END AS CategoriaVenda
+FROM Pedidos;
+Exemplo 3: Aplicar Descontos
+Você pode aplicar descontos diferentes com base na quantidade comprada.
+
+sql
+Copiar código
+SELECT ID,
+       Quantidade,
+       PrecoUnitario,
+       CASE
+           WHEN Quantidade >= 100 THEN PrecoUnitario * 0.9  -- 10% de desconto
+           WHEN Quantidade >= 50 THEN PrecoUnitario * 0.95  -- 5% de desconto
+           ELSE PrecoUnitario
+       END AS PrecoFinal
+FROM Produtos;
+Exemplo 4: Condição em Agregação
+Você pode usar CASE para calcular totais condicionalmente.
+
+sql
+Copiar código
+SELECT ClienteID,
+       SUM(CASE WHEN Data BETWEEN '2023-01-01' AND '2023-12-31' THEN Valor ELSE 0 END) AS TotalAno
+FROM Pedidos
+GROUP BY ClienteID;
+2. Comandos de Exclusão
+Os comandos de exclusão em SQL permitem remover dados ou estruturas inteiras do banco de dados.
+
+Comandos de Exclusão
+DELETE: Remove registros específicos de uma tabela.
+
+sql
+Copiar código
+DELETE FROM Clientes WHERE ID = 4;
+TRUNCATE TABLE: Remove todos os registros de uma tabela, mas mantém a estrutura da tabela.
+
+sql
+Copiar código
+TRUNCATE TABLE Clientes;
+DROP TABLE: Remove uma tabela inteira e todos os seus dados.
+
+sql
+Copiar código
+DROP TABLE Pedidos;
+DROP INDEX: Remove um índice existente.
+
+sql
+Copiar código
+DROP INDEX idx_cliente_nome;
+3. Variáveis em SQL
+A manipulação de variáveis depende do SGBD que você está usando. Vou mostrar exemplos para SQL Server e MySQL.
+
+SQL Server
+Declarar e Atribuir Variáveis
+
+sql
+Copiar código
+DECLARE @NomeCliente VARCHAR(100);
+DECLARE @IdadeCliente INT;
+
+SET @NomeCliente = 'Alice';
+SET @IdadeCliente = 30;
+Usar Variáveis em Consultas
+
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Nome = @NomeCliente AND Idade = @IdadeCliente;
+MySQL
+Declarar e Atribuir Variáveis
+
+sql
+Copiar código
+SET @NomeCliente = 'Alice';
+SET @IdadeCliente = 30;
+Usar Variáveis em Consultas
+
+sql
+Copiar código
+SELECT * FROM Clientes WHERE Nome = @NomeCliente AND Idade = @IdadeCliente;
+Alterar o Valor de Variáveis
+
+sql
+Copiar código
+SET @NomeCliente = 'Bob';
+SET @IdadeCliente = 25;
+Resumo dos Exemplos
+CASE WHEN:
+
+Categorizar idades em faixas etárias.
+Classificar vendas em categorias.
+Aplicar descontos com base na quantidade.
+Calcular totais condicionalmente.
+Comandos de Exclusão:
+
+DELETE: Remove registros específicos.
+TRUNCATE TABLE: Remove todos os registros de uma tabela.
+DROP TABLE: Remove a tabela e seus dados.
+DROP INDEX: Remove um índice.
+Variáveis:
+
+Em SQL Server e MySQL, você pode declarar e atribuir variáveis, usar variáveis em consultas e alterar seus valores.
+Esses conceitos e comandos são essenciais para a manipulação e gestão de dados em SQL, permitindo operações de filtragem, exclusão e manipulação de dados e estruturas de maneira eficaz.
+
+herança total: reperesentei todos os possíveis
+herança parcial: representei apenas o que erra pertinente
+henraça sobreposiç~çaoi: os objetos podem ser quaslquer um dois doiis ou os dois ao mesmo tempo
+heranbça excllusiva: pode ser apenas um deles o objeto
+
+

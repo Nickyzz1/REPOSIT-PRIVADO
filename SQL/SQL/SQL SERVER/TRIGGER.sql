@@ -1,0 +1,117 @@
+USE BigData
+
+
+
+ ---------- ex 1 ----------
+ --#########################
+
+-- criar a tabela que armazena os dados novos inseridos
+
+GO
+
+CREATE TABLE Log(
+DATA DATETIME, -- DATA DE INSERÇÃO
+OPER VARCHAR(50), -- OPERAÇÃO INSERÇÃO
+OBS VARCHAR(255) -- NOME DA PESSOA INSERIDA
+PRIMARY KEY (DATA, OPER ))
+
+GO
+
+-- criar trigger que após um insert em tal tabela irá inserir na tabela Log os dados inseridos
+
+ALTER TRIGGER  cSAVE -- É o nome definido pelo usuário para o novo trigger
+ON TABELA_DE_CLIENTES -- É a tabela à qual o trigger se aplica.
+FOR INSERT
+AS
+BEGIN
+DECLARE
+	@DATA	DATETIME,
+	@OPERATION  VARCHAR(10),
+	@NAME VARCHAR(255)
+	SELECT @DATA = GETDATE(), @OPERATION = 'INSERCAO', @NAME = (SELECT NOME FROM INSERTED)
+	insert into Log(DATA, OPER, OBS) VALUES (@DATA, @OPERATION, 'Inserido a pessoa ' + @NAME)
+END
+
+GO
+
+-- a inserção para testar
+
+insert into TABELA_DE_CLIENTES 
+(CPF, NOME)
+VALUES ('1292268366', 'Helena Picinin')
+
+-- select para conferir
+
+select * from TABELA_DE_CLIENTES
+select * from Log
+
+ ---------- ex 2 ----------
+ --########################
+------ excluir um dado do cliente exclui esse dado de todos os banco de dados ----
+
+-- CRIANDO A TABELA QUE GUARDA OS DADOS EXCLUÍDOS
+
+CREATE TABLE delDates
+(
+DATA DATETIME, -- DATA DE INSERÇÃO
+OPER VARCHAR(50), -- OPERAÇÃO INSERÇÃO
+OBS VARCHAR(255) -- NOME DA PESSOA INSERIDA
+PRIMARY KEY (DATA, OPER ))
+
+GO
+
+-- VARIÁVEL CO O CPF PARA DELETAR
+DECLARE @DELCPF VARCHAR(20) 
+SET @DELCPF = '1292268366'
+DECLARE @NAME VARCHAR(255);
+
+-- PEGAR o nome antes de deletar
+SELECT @NAME = TC.NOME
+FROM TABELA_DE_CLIENTES AS TC
+WHERE TC.CPF = @DELCPF;
+
+--BEGIN TRANSACTION; -- DÁ PRA VOLTAR ATRÁS
+
+DELETE FROM NOTAS_FISCAIS
+WHERE CPF IN (
+    SELECT TC.CPF
+    FROM TABELA_DE_CLIENTES AS TC
+    INNER JOIN NOTAS_FISCAIS AS NF
+    ON TC.CPF = NF.CPF
+    WHERE TC.CPF =	@DELCPF )	
+
+DELETE FROM TABELA_DE_CLIENTES
+WHERE CPF = @DELCPF;
+
+--COMMIT;
+
+
+-- CONFERINFDO CLIENTE EXCLUIDO
+SELECT *
+FROM TABELA_DE_CLIENTES AS TC
+INNER JOIN NOTAS_FISCAIS AS NF
+ON TC.CPF = NF.CPF
+WHERE TC.CPF = '1292268366'
+
+-- CONFERINDO CLIENTE QUE EXISTE
+SELECT *
+FROM TABELA_DE_CLIENTES AS TC
+INNER JOIN NOTAS_FISCAIS AS NF
+ON TC.CPF = NF.CPF
+WHERE TC.CPF = '1471156710'
+
+GO
+
+ALTER TRIGGER  saveDEL -- É o nome definido pelo usuário para o novo trigger
+ON TABELA_DE_CLIENTES -- É a tabela à qual o trigger se aplica.
+FOR DELETE
+AS
+BEGIN
+DECLARE
+	@DATA	DATETIME,
+	@OPERATION  VARCHAR(10)
+	SELECT @DATA = GETDATE(), @OPERATION = 'INSERCAO', @NAME = (SELECT NOME FROM DELETED)
+	insert into delDates(DATA, OPER, OBS) VALUES (@DATA, @OPERATION, @NAME)
+END
+
+SELECT * FROM delDates
