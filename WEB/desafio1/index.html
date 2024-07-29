@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Figtree:ital,wght@0,300..900;1,300..900&family=Ga+Maamli&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="all">
+        <h1>CINEMAX</h1>
+        <section class="container">
+            <figure>
+                <a target="_blank" href="https://cinepop.com.br/wp-content/uploads/2024/05/deadpool-e-wolverine-poster.jpg.avif" >
+                    <img src="https://cinepop.com.br/wp-content/uploads/2024/05/deadpool-e-wolverine-poster.jpg.avif" alt="Deadpool e Wolverine">
+                </a>
+                <figcaption>Deadpool e Wolverine</figcaption>
+            </figure>
+
+            <figure>
+                <a target="_blank" href="https://www.ucicinemas.com.br/Content/Upload/Filmes/Posters/12175/filme_12175.jpg">
+                    <img src="https://www.ucicinemas.com.br/Content/Upload/Filmes/Posters/12175/filme_12175.jpg" alt="Coraline">
+                </a>
+                <figcaption>Coraline</figcaption>
+            </figure>
+
+            <figure>
+                <a target="_blank" href="https://br.web.img3.acsta.net/pictures/210/049/21004903_20130510170049514.jpg">
+                    <img id="genteGrande" src="https://br.web.img3.acsta.net/pictures/210/049/21004903_20130510170049514.jpg" alt="Gente Grande 2">
+                </a>
+                <figcaption>Gente Grande 2</figcaption>
+            </figure>
+        </section>
+
+        <section class="botton">
+            <a href="Estreias.html">
+                <button>VEJA OS SHOPPINGS DE ESTREIA</button>
+            </a>
+        </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ffffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 5,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": false
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 0.8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>

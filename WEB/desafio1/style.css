@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: #000; /* Cor de fundo escura para contraste com as partículas */
+    color: white;
+    font-family: "Roboto", sans-serif;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px; /* Ajuste o espaçamento superior do título se necessário */
+    font-family: "Carrois Gothic SC", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 60px;
+}
+
+.container {
+    display: flex;
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    gap: 20px; /* Espaçamento entre os itens */
+    flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte se não houver espaço suficiente */
+    padding: 20px;
+}
+
+a {
+    color: inherit; /* Faz com que a cor do link herde a cor do texto do pai */
+    text-decoration: none; /* Remove o sublinhado dos links */
+}
+
+figure {
+    margin: 0;
+    text-align: center;
+    transition: transform 0.3s ease; /* Suaviza a transição */
+}
+
+figure:hover {
+    transform: scale(1.1); /* Aumenta o tamanho do figure em 10% */
+}
+
+img {
+    width: 250px; /* Ajuste o tamanho das imagens conforme necessário */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+#genteGrande{
+    height: 330px;
+}
+
+figcaption {
+    margin-top: 10px;
+}
+
+.botton {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    text-align: center;
+    transition: transform 0.7s ease; 
+}
+
+button:hover {
+    transform: scale(1.07); /* Aumenta o tamanho do figure em 10% */
+    background-color: #b11308;
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #c2271c; /* Cor inicial do botão */
+    color: white;
+    padding: 15px 32px; /* deixa largo */
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer; /* muda o cursor */
+    border: none; /* tira a borda automática */
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Garante que as partículas fiquem atrás do conteúdo */
+}
+
+.all{
+    padding: 7%;
+}
