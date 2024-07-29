@@ -1,0 +1,172 @@
+Claro! Vou criar seis exercícios desafiadores com base nas tabelas que você forneceu. Cada exercício explora um aspecto avançado do SQL, como joins complexos, subqueries, funções agregadas e procedimentos armazenados.
+
+1. Relatório de Vendas por Cliente e Produto
+Descrição: Crie uma consulta que forneça um relatório detalhado de vendas, agrupado por cliente e produto. O relatório deve incluir:
+
+Nome do cliente
+Nome do produto
+Quantidade total vendida
+Valor total gasto pelo cliente em cada produto
+Tabelas Usadas: clientes, notas fiscais, itens notas fiscais, produtos
+
+Exemplo de Consulta:
+
+sql
+Copiar código
+SELECT 
+    c.nome AS NomeCliente,
+    p.nome_do_produto AS NomeProduto,
+    SUM(i.quantidade) AS QuantidadeTotal,
+    SUM(i.preço * i.quantidade) AS ValorTotal
+FROM 
+    clientes c
+JOIN 
+    notas_fiscais nf ON c.cpf = nf.cpf
+JOIN 
+    itens_notas_fiscais i ON nf.numero = i.numero
+JOIN 
+    produtos p ON i.cod_do_produto = p.código_do_produto
+GROUP BY 
+    c.nome, p.nome_do_produto
+ORDER BY 
+    c.nome, p.nome_do_produto;
+2. Identificação de Produtos com Menor Margem de Lucro
+Descrição: Encontre os produtos com a menor margem de lucro com base no preço de lista e no preço efetivamente vendido. O preço efetivo é calculado como o preço registrado na tabela itens notas fiscais.
+
+Tabelas Usadas: produtos, itens notas fiscais
+
+Exemplo de Consulta:
+
+sql
+Copiar código
+SELECT 
+    p.nome_do_produto AS NomeProduto,
+    p.preco_de_lista AS PrecoLista,
+    AVG(i.preço) AS PrecoEfetivo,
+    p.preco_de_lista - AVG(i.preço) AS MargemLucro
+FROM 
+    produtos p
+JOIN 
+    itens_notas_fiscais i ON p.código_do_produto = i.cod_do_produto
+GROUP BY 
+    p.nome_do_produto, p.preco_de_lista
+ORDER BY 
+    MargemLucro ASC
+LIMIT 10;
+3. Procedimento Armazenado para Relatório de Vendas do Vendedor
+Descrição: Crie um procedimento armazenado que, dado um número de matrícula de um vendedor, retorna o total de vendas realizadas por esse vendedor, agrupado por mês e ano.
+
+Tabelas Usadas: notas fiscais, itens notas fiscais, vendedores
+
+Exemplo de Stored Procedure:
+
+sql
+Copiar código
+DELIMITER //
+
+CREATE PROCEDURE RelatorioVendasPorVendedor(
+    IN vendedor_matricula VARCHAR(255)
+)
+BEGIN
+    SELECT 
+        YEAR(nf.data_venda) AS Ano,
+        MONTH(nf.data_venda) AS Mes,
+        SUM(i.quantidade * i.preço) AS TotalVendas
+    FROM 
+        notas_fiscais nf
+    JOIN 
+        itens_notas_fiscais i ON nf.numero = i.numero
+    JOIN 
+        vendedores v ON nf.matricula = v.matricula
+    WHERE 
+        v.matricula = vendedor_matricula
+    GROUP BY 
+        YEAR(nf.data_venda), MONTH(nf.data_venda)
+    ORDER BY 
+        Ano, Mes;
+END //
+
+DELIMITER ;
+4. Clientes com Maior Volume de Compra em um Estado Específico
+Descrição: Liste os clientes com o maior volume de compra em um estado específico. O estado é passado como um parâmetro para a consulta.
+
+Tabelas Usadas: clientes, notas fiscais, itens notas fiscais
+
+Exemplo de Consulta:
+
+sql
+Copiar código
+SELECT 
+    c.nome AS NomeCliente,
+    c.estado AS Estado,
+    SUM(i.quantidade * i.preço) AS VolumeCompra
+FROM 
+    clientes c
+JOIN 
+    notas_fiscais nf ON c.cpf = nf.cpf
+JOIN 
+    itens_notas_fiscais i ON nf.numero = i.numero
+WHERE 
+    c.estado = 'SP' -- Substitua 'SP' pelo estado desejado
+GROUP BY 
+    c.nome, c.estado
+ORDER BY 
+    VolumeCompra DESC
+LIMIT 10;
+5. Produtos com Preços Inconsistentes
+Descrição: Encontre produtos cujo preço na tabela itens notas fiscais seja consistentemente mais baixo do que o preço de lista na tabela produtos.
+
+Tabelas Usadas: produtos, itens notas fiscais
+
+Exemplo de Consulta:
+
+sql
+Copiar código
+SELECT 
+    p.nome_do_produto AS NomeProduto,
+    p.preco_de_lista AS PrecoLista,
+    AVG(i.preço) AS PrecoMedio
+FROM 
+    produtos p
+JOIN 
+    itens_notas_fiscais i ON p.código_do_produto = i.cod_do_produto
+GROUP BY 
+    p.nome_do_produto, p.preco_de_lista
+HAVING 
+    AVG(i.preço) < p.preco_de_lista
+ORDER BY 
+    p.nome_do_produto;
+6. Atualização Automática de Limite de Crédito
+Descrição: Crie uma trigger que automaticamente atualiza o limite de crédito de um cliente para o dobro se o volume de compra do cliente ultrapassar um determinado valor.
+
+Tabelas Usadas: clientes, notas fiscais, itens notas fiscais
+
+Exemplo de Trigger:
+
+sql
+Copiar código
+DELIMITER //
+
+CREATE TRIGGER AtualizaLimiteCredito
+AFTER INSERT ON itens_notas_fiscais
+FOR EACH ROW
+BEGIN
+    DECLARE volume_compra FLOAT;
+
+    -- Calcula o volume de compra total do cliente
+    SELECT SUM(i.quantidade * i.preço)
+    INTO volume_compra
+    FROM notas_fiscais nf
+    JOIN itens_notas_fiscais i ON nf.numero = i.numero
+    WHERE nf.cpf = (SELECT cpf FROM notas_fiscais WHERE numero = NEW.numero);
+    
+    -- Verifica se o volume de compra ultrapassa o limite
+    IF volume_compra > 10000 THEN -- Substitua 10000 pelo valor desejado
+        UPDATE clientes
+        SET limite_de_credito = limite_de_credito * 2
+        WHERE cpf = (SELECT cpf FROM notas_fiscais WHERE numero = NEW.numero);
+    END IF;
+END //
+
+DELIMITER ;
+Esses exercícios abrangem uma variedade de conceitos SQL avançados, como consultas complexas, stored procedures, triggers e manipulação de dados. Eles são projetados para testar seu conhecimento e habilidades em diferentes aspectos do SQL.
