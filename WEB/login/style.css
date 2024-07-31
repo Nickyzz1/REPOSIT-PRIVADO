@@ -48,6 +48,21 @@ input{
     margin: 10px;
     color: rgba(255, 255, 255, 0.5);
 }
+
+/* alinha a checkbox e a label */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 15px; /* Ajusta o tamanho da checkbox */
+}
+
+.checkbox-container label {
+    font-size: 14px; /* Ajusta o tamanho do texto */
+}
+
 :placeholder-shown{
     padding-left: 18px;
 }
