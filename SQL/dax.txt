@@ -1,0 +1,46 @@
+vendas por loja = CALCULATE([Total de pedidos], ALLEXCEPT(Vendas, Vendas[Loja]))
+
+Faturamento bruto = sum(Vendas[faturamento])
+
+faturamento sumx bruto = SUMX('Vendas', Vendas[Tamanho Pedido] * [preco produto])
+
+Filter acima da média = CALCULATE(COUNT(Vendas[preco produto]),
+FILTER(Vendas, Vendas[faturamento] > [Media faturamento (absoluto)]))
+
+maximo faturamento = MAX(Vendas[faturamento])
+
+media de faturamento = AVERAGE(Vendas[faturamento])
+
+Media faturamento (absoluto) = CALCULATE(AVERAGE(Vendas[faturamento]), ALL(Vendas)) 
+
+Medida de preços (absoluta) = CALCULATE(AVERAGE(Produtos[Preco Unitario]), all(Produtos))
+
+meta faturamento = 7000000
+
+minimo faturamento = MIN(Vendas[faturamento])
+
+numero de clientes = COUNTA(Clientes[Nome do Cliente])
+
+Percentual de devoluções = [prejuízo total] / [Faturamento bruto]
+
+percentual pedidos por loja = [Total de pedidos]/[quantidade pedidos por loja (absoluto)]
+
+percentual quantidade de devoluções por loja = [qualtidade total devolvida] /[quantidade devoluções(absoluto)]
+
+prejuízo total = sumx(Produtos, Produtos[Preco Unitario] * [qualtidade total devolvida])
+
+qualtidade total devolvida = SUM('Devoluções'[Quantidade Devolvida])
+
+quantidade de produtos distintos devolvidos = DISTINCTCOUNT(Produtos[SKU]) 
+
+quantidade de vendas = COUNT(Vendas[Tamanho Pedido])
+
+quantidade devoluções(absoluto) = calculate(sum('Devoluções'[Quantidade Devolvida]), ALL('Devoluções'))
+
+quantidade pedidos por loja (absoluto) = CALCULATE([quantidade de vendas], ALL(Vendas))
+
+quantidade vendas fim de semana = CALCULATE( SUM(Vendas[Tamanho Pedido]), Calendario[dia da semana dax or] = "fim de semana")
+
+Total de pedidos = sum(Vendas[Tamanho Pedido])
+
+vendas por mês datasytd = CALCULATE([faturamento sumx bruto], DATESYTD(Calendario[Data]))
