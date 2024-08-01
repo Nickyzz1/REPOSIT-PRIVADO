@@ -44,3 +44,11 @@ quantidade vendas fim de semana = CALCULATE( SUM(Vendas[Tamanho Pedido]), Calend
 Total de pedidos = sum(Vendas[Tamanho Pedido])
 
 vendas por mês datasytd = CALCULATE([faturamento sumx bruto], DATESYTD(Calendario[Data]))
+
+////////////////////////
+
+
+
+
+
+
