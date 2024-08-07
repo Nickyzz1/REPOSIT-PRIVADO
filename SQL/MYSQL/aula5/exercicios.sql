@@ -128,7 +128,27 @@ select * from clientes; -- cliente_id, nome, email
 select * from pedidos; -- pedido_id cliente_id livro_id quantidade data_pedido
 select * from livros; -- livro_id, titulo, autor_id, preco
 
+-- ex 7
+select
+C.nome,
+P.pedido_id
+from clientes as C
+left join pedidos as P
+on C.cliente_id = P.cliente_id
+where P.pedido_id = null;
 
+-- ex6
+SELECT
+    L.nome,
+    P.quantidade
+FROM livro AS L
+INNER JOIN pedidos AS P ON P.livro_id = L.livro_id
+WHERE P.pedido_id IS NOT NULL
+AND P.pedido_id BETWEEN 0 AND (
+    SELECT MAX(pedido_id) FROM pedidos
+)
+
+-- ex6
 select
 L.nome,
 P.quantidade
@@ -136,7 +156,7 @@ from livro as L
 full join pedidos as P
 on P.livro_id = L.livro_id;
 
-
+-- ex5
 select
 C.nome,
 count(C.nome) as "quantos pedidos do dia",
@@ -174,6 +194,3 @@ A.nome as "autor"
 from livros as L
 left join autores as A
 on L.autor_id = A.autor_id or L.autor_id = null or  L.autor_id = " ";
-
-
-
