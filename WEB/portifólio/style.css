@@ -1,0 +1,114 @@
+:root {
+    font-family: "Source Code Pro", monospace;
+    color: white;
+}
+
+body {
+    background-color: black;
+}
+
+ul { 
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+li {
+    margin: 0;
+}
+
+li:hover {
+    color: #ff5757;
+}
+
+.formatation {
+    color: inherit;
+    text-decoration: none;
+}
+
+.menu {
+    display: flex;
+    direction: rtl;
+    padding: 10px;
+}
+
+ul {
+    padding-right: 3%;
+}
+
+img {
+    border-radius: 500%;
+    width: 200px;
+}
+
+main {
+    display: flex;
+    padding: 20%;
+    padding-top: 10%;
+}
+
+.helloWorld {
+    padding-left: 10%;
+}
+
+span {
+    color: #ff5757;
+}
+
+.typeWriting, .typeWriting2 {
+    font-family: monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 1px solid white; 
+    color: white; 
+}
+
+.typeWriting {
+    font-size: 36px;
+    width: 0; /* Começa com largura zero */
+    animation: digitarH1 4s steps(20) forwards, cursor 1s steps(1) infinite;
+}
+
+.typeWriting2 {
+    font-size: 24px;
+    opacity: 0; /* Começa invisível */
+    width: 0; /* Começa com largura zero */
+    animation: fadeIn 1s 5s forwards, digitarH2 4s 6s steps(18) forwards, cursor 1s steps(1) infinite;
+}
+
+.typeWriting::after,
+.typeWriting2::after {
+    content: '|'; /* O conteúdo do cursor */
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 16px; 
+    color: white; /* Cor do cursor */
+    animation: cursor 1s steps(1) infinite;
+}
+
+/* Animação de escrita para h1 */
+@keyframes digitarH1 {
+    from { width: 0; }
+    to { width: 15ch; } /* Ajuste o valor conforme o comprimento do texto */
+}
+
+/* Animação de escrita para h2 */
+@keyframes digitarH2 {
+    from { width: 0; }
+    to { width: 15ch; } /* Ajuste o valor conforme o comprimento do texto */
+}
+
+/* Animação de fade-in */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Animação do cursor piscando */
+@keyframes cursor {
+    0% { border-color: transparent; }
+    50% { border-color: white; }
+    100% { border-color: transparent; }
+}
