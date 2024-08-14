@@ -1,1 +1,95 @@
-a
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AudioBook</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <img src="assets/img/WhatsApp Image 2024-08-13 at 11.51.42.jpeg" alt="">
+    <div id="informacoes-faixa">
+        <p id="capitulo" >Capítulo 1</p>
+        <p id="nome-autor">Machado de Assis</p>
+    </div>
+    <div id="musicaAtual">
+        <audio id="audio-capitulo" src="assets/audio/cap1.mp3"></audio>
+    </div>
+
+    <div id="container-botoes">
+        <button id="anterior" onclick="goBack()" class="bi bi-skip-backward-fill"></button>
+        <button onclick="myFunc()" id="play-pause" class="bi bi-play-circle-fill"></button>
+        <button id="proximo" onclick="goNext()" class="bi bi-skip-forward-fill"></button>
+    </div>
+
+    <script>
+
+        //pausar
+
+        var count = 0;
+        var passCap = 1;
+
+        var audio = document.getElementById("audio-capitulo");
+        var button = document.getElementById("play-pause")
+        var back = document.getElementById("anterior")
+        var next = document.getElementById("next")
+        var capitulo = document.getElementById("capitulo")
+
+        var myFunc = () => {
+
+            count += 1
+            if(count%2 == 0)
+            {
+                audio.pause()
+                button.className = "bi bi-play-circle-fill"
+            }
+            else{
+                audio.play()
+                button.className = "bi bi-pause-circle-fill"
+            }    
+        }
+
+        //mudar título do cap
+
+        var goNext = () =>{
+
+            if(passCap >= 10)
+            {
+                passCap=10
+                audio.src = "assets/audio/cap" + passCap + ".mp3"
+                alert("Não há mais capítulos")
+            }
+            else{
+                
+                passCap+=1;
+                capitulo.innerHTML = `<p> Capítulo ${passCap}</p>`
+                audio.src = "assets/audio/cap" + passCap + ".mp3"
+            }
+        }
+
+        //mudar título do cap
+
+        const goBack = () =>{
+
+            if(passCap <= 1)
+            {
+                passCap=1
+                alert("Não há capitulos anteriores")
+                audio.src = "assets/audio/cap" + passCap + ".mp3"
+            }
+            else{
+                
+                passCap-=1;
+                capitulo.innerHTML = `<p> Capítulo ${passCap}</p>`
+                audio.src = "assets/audio/cap" + passCap + ".mp3"
+            }
+        }
+
+    </script>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
