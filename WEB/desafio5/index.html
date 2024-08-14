@@ -187,6 +187,7 @@
       var miniatura1 = document.getElementById("0-imagem-miniatura")
       var miniatura2 = document.getElementById("1-imagem-miniatura")
       var miniatura3 = document.getElementById("2-imagem-miniatura")
+      var nomeCor = document.getElementById("nome-cor-selecionada")
 
       var trocaCor = (obj) =>
       {
@@ -197,6 +198,7 @@
           miniatura1.src = "assets/img/azulCinza-1.jpeg"
           miniatura2.src = "assets/img/azulCinza-2.jpeg"
           miniatura3.src = "assets/img/azulCinza-3.jpeg"
+          nomeCor.textContent = "Azul"
         }
         else if(obj == "2-cor")  //preto
         {
@@ -204,6 +206,7 @@
           miniatura1.src = "assets/img/preto-1.jpeg"
           miniatura2.src = "assets/img/preto-2.jpeg"
           miniatura3.src = "assets/img/preto-3.jpeg"
+          nomeCor.textContent = "preto"
 
         }
 
@@ -213,6 +216,7 @@
           miniatura1.src = "assets/img/coral-1.jpeg"
           miniatura2.src = "assets/img/coral-2.jpeg"
           miniatura3.src = "assets/img/coral-3.jpeg"
+          nomeCor.textContent = "coral"
 
         }
 
@@ -222,6 +226,7 @@
           miniatura1.src = "assets/img/rosa-1.jpeg"
           miniatura2.src = "assets/img/rosa-2.jpeg"
           miniatura3.src = "assets/img/rosa-3.jpeg"
+          nomeCor.textContent = "rosa"
 
         }
 
@@ -231,6 +236,7 @@
           miniatura1.src = "assets/img/verde-1.jpeg"
           miniatura2.src = "assets/img/verde-2.jpeg"
           miniatura3.src = "assets/img/verde-3.jpeg"
+          nomeCor.textContent = "verde"
 
         }
       }
