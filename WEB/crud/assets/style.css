@@ -1,0 +1,14 @@
+.header-ul
+{
+    color: white;
+    list-style: none;
+}
+
+.link{
+    text-decoration: none;
+    color: white;
+    transition: 0.3ms;
+}
+.link:hover{
+    color: gray;
+}
