@@ -288,5 +288,84 @@ INSERT INTO vendas (id_produto, id_cliente, data_venda, quantidade, valor_total)
 select * from logVendasPromocao;
 
 -- 7.Registrar produtos em falta no estoque e gerar uma notificação.
+
+-- vendas (id_produto, id_cliente, data_venda, quantidade, valor_total)
+-- produtos (nome_produto, categoria, preco, quantidade_estoque)
+
+drop table logProdutosEmFalta;
+drop trigger produtosFalta;
+
+create table logProdutosEmFalta(
+id_produto int not null,
+nome_produto varchar(60) not null,
+quantidade int
+);
+
+delimiter //
+create trigger produtosFalta
+after update on produtos
+for each row
+begin
+	if new.quantidade_estoque < 30 then
+    insert into logProdutosEmFalta (id_produto, nome_produto, quantidade) values (new.id_produto, new.nome_produto, new.quantidade_estoque);
+    end if;
+end
+// delimiter ;
+
+update produtos
+set quantidade_estoque = 2
+where nome_produto = 'Smartwatch Pro';
+
+select * from logProdutosEmFalta;
+
 -- 8.Atualizar o valor total de vendas de um produto após uma nova venda.
+
+-- vendas (id_produto, id_cliente, data_venda, quantidade, valor_total)
+-- produtos (nome_produto, categoria, preco, quantidade_estoque)
+
+update vendas add column 
+
+drop trigger updateValorProdutos;
+
+delimiter //
+create trigger updateValorProdutos
+before insert on vendas
+for each row
+begin
+	update vendas
+	set valor_total = valor_total + new.valor_total
+    where id_produto = new.id_produto;
+end
+// delimiter ;
+
+INSERT INTO vendas (id_produto, id_cliente, data_venda, quantidade, valor_total) VALUES (6, 14, '2024-08-16', 1, 10);
+
+-- after - old
 -- 9.Rastrear alterações no valor de produtos e registrar uma notificação.
+
+create table logAlterPreco(
+id_produto int not null,
+descricao varchar(255)
+);
+
+drop trigger tg_alterPreco;
+
+delimiter //
+create trigger tg_alterPreco
+after update on produtos
+for each row
+begin
+	insert into logAlterPreco(id_produto, descricao) values (new.id_produto, 'alteração de preço');
+end 
+// delimiter ;
+
+update produtos
+set preco = 2
+where nome_produto = 'Cadeira Gamer RGB';
+
+select * from logAlterPreco;
+
+
+
+
+
