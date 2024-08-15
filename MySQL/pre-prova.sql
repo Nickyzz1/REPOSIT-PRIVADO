@@ -195,7 +195,7 @@ end
 
 -- média preço atual + preço com desconto / 2 = preço médio
 SET SQL_SAFE_UPDATES = 0;
-INSERT INTO vendas (id_produto, id_cliente, data_venda, quantidade, valor_total) VALUES (6, 14, '2024-08-16', 1, 100200);
+INSERT INTO vendas (id_produto, id_cliente, data_venda, quantidade, valor_total) VALUES (6, 14, '2024-08-16', 1, 10);
 
 -- 4.Rastrear alterações no estoque de produtos e registrar uma notificação dentro de um log.
 
@@ -249,7 +249,43 @@ select * from logNewUser;
 
 -- 6.Monitorar vendas de produtos em promoção e registrar uma notificação.
 
+drop table logVendasPromocao;
 
+create table logVendasPromocao(
+id_produto int not null,
+quantidade_produto int not null,
+valor_total float not null,
+descricao varchar(255)
+);
+
+-- vendas (id_produto, id_cliente, data_venda, quantidade, valor_total)
+-- produtos (nome_produto, categoria, preco, quantidade_estoque)
+
+drop trigger tg_vendasPromocao;
+
+delimiter //
+create trigger tg_vendasPromocao
+after insert on vendas
+for each row
+begin
+
+    declare precoTabela decimal;
+    set precoTabela = (
+		select 
+        preco
+        from produtos
+        where id_produto = new.id_produto
+    );
+    
+    if new.valor_total < precoTabela then
+	insert into logVendasPromocao (id_produto, quantidade_produto, valor_total, descricao ) values (new.id_produto, new.quantidade, new.valor_total, 'produto vendido com desconto');
+    end if;
+end
+
+// delimiter ;
+
+INSERT INTO vendas (id_produto, id_cliente, data_venda, quantidade, valor_total) VALUES (1, 1, '2024-08-01', 1, 89);
+select * from logVendasPromocao;
 
 -- 7.Registrar produtos em falta no estoque e gerar uma notificação.
 -- 8.Atualizar o valor total de vendas de um produto após uma nova venda.
