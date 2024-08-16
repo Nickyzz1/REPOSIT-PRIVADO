@@ -1,0 +1,23 @@
+Exercício 1: Atualização de Valor Total de Compras
+Implemente uma trigger que atualize o valor total de compras de um cliente na tabela clientes sempre que uma nova venda for registrada na tabela vendas. Considere que um cliente pode comprar produtos de diferentes categorias e que o valor total deve ser acumulado de maneira correta.
+
+Exercício 2: Aplicação Automática de Desconto
+Crie uma trigger para aplicar automaticamente um desconto de promoção na venda, caso a data da venda coincida com o período de uma promoção ativa. O valor do desconto deve ser deduzido do valor total da venda e, em seguida, atualizado no campo valor_total da tabela vendas.
+
+Exercício 3: Notificação de Alteração de Estoque
+Crie uma trigger que monitore a quantidade de estoque de produtos na tabela produtos após cada venda. Se o estoque de um produto ficar abaixo de 10 unidades, a trigger deve inserir uma mensagem de notificação na tabela notificacoes, alertando sobre o baixo estoque.
+
+Exercício 4: Rastreamento de Alteração de Preço
+Implemente uma trigger que rastreie qualquer alteração no preço de um produto na tabela produtos. Sempre que o preço for alterado, a trigger deve registrar uma notificação na tabela notificacoes informando sobre a mudança, incluindo o nome do produto, o preço antigo e o novo preço.
+
+Exercício 5: Reajuste de Preço Médio
+Implemente uma trigger que atualize o preço médio de venda de um produto na tabela produtos após cada nova venda. O preço médio deve ser recalculado considerando o histórico de vendas do produto, incluindo a quantidade vendida e o valor total arrecadado.
+
+Exercício 6: Notificação de Venda em Promoção
+Crie uma trigger que monitore a tabela vendas e registre uma notificação sempre que um produto for vendido em um período de promoção ativa. A notificação deve incluir o nome do produto, a data da venda e o valor total com desconto aplicado.
+
+Exercício 7: Rastreamento de Cliente VIP
+Implemente uma trigger que classifique um cliente como "VIP" na tabela clientes caso o valor total de compras dele ultrapasse 10.000. Sempre que isso acontecer, a trigger deve registrar uma notificação informando que o cliente foi promovido a "VIP".
+
+Exercício 8: Atualização de Estoque e Reabastecimento Automático
+Implemente uma trigger que atualize o estoque de produtos na tabela produtos e automaticamente reabasteça o estoque de produtos que caem abaixo de 5 unidades. O reabastecimento deve ser registrado na tabela notificacoes, mencionando o nome do produto e a quantidade reabastecida.
