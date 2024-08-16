@@ -1,0 +1,120 @@
+use db_loja;
+
+select * from veiculos;
+select * from clientes;
+select * from marcas;
+select * from vendas;
+
+-- 1 - Ao registrar um novo veículo, crie um registro ("Veículo x cadastrado na data de xx/xx/xxxx")
+
+drop trigger tg_registrarVeiculos;
+drop table logRegistros;
+
+create table logRegistros(
+id int primary key not null auto_increment,
+descricao varchar(255)
+);
+
+delimiter //
+create trigger tg_registrarVeiculos
+after insert on veiculos
+for each row
+begin
+	insert into logRegistros(descricao) values (concat('veiculo ', new.modelo, ' cadastrado na data ', curdate()));
+end
+// delimiter ;
+
+insert into veiculos(id_marca, modelo, ano, preco, cor) values (1, 'Corolla', 2025, 100, 'Prata');
+
+select * from logRegistros;
+
+-- 2 - Ao deletar um usuário, salve os dados importantes dentro de uma tabela chamada "deleted_users"
+
+create table deleted_users(
+id int NOT NULL PRIMARY KEY,
+nome varchar(100) not null,
+email varchar(100) not null,
+telefone varchar(20) not null
+);
+
+drop trigger tg_saveDeletedUsers;
+delimiter //
+create trigger tg_saveDeletedUsers
+before delete on clientes
+for each row
+begin
+	insert into deleted_users(id, nome, email, telefone) values (old.id, old.nome, old.email, old.telefone);
+end
+// delimiter ;
+
+delete from clientes
+where nome = 'Ana';
+
+-- 3 - Criar um log de cada vez que o dado de algum veículo for alterado e exibir uma mensagem de ("Veículo x teve alterações no item x. valor antigo: x, valor novo: x")
+
+create table logAlteracoes(
+id int primary key not null auto_increment,
+descricao varchar(255));
+
+delimiter //
+
+create trigger alterar 
+after update on veiculos
+for each row
+begin
+	insert into logAlteracoes(descricao) values (concat('veiculo', new.modelo,  ' teve alterações no item preco. valor antigo ', old.preco, ' valor novo: ', new.preco));
+end
+// delimiter ;
+
+update veiculos
+set preco = preco + 100
+where modelo = 'Corolla';
+
+select * from logAlteracoes;
+
+-- 4 - Cada vez que um veículo for vendido, exiba uma mensagem para seu cliente o parabenizando que contenha seu nome, nome do veículo.
+
+select * from vendas;
+
+create table logVendas(
+id int not null primary key AUTO_INCREMENT,
+data date not null,
+descricao varchar(255)
+);
+
+drop trigger exibirMensagem;
+
+delimiter //
+create trigger exibirMensagem
+after insert on vendas
+for each row
+begin
+	declare veiculo varchar(60); 
+    declare cliente varchar(60);
+    
+    set cliente = (select
+    c.nome
+    from clientes as c
+    inner join vendas as v
+    on new.id_cliente = c.id
+    limit 1
+    );
+    
+    set veiculo = (
+    select
+    v.modelo
+    from veiculos as v
+    inner join vendas as ven
+    on v.id = new.id_veiculo
+    limit 1
+    );
+	insert into logVendas(data, descricao) values(curdate(), concat('parabens pela compra ', cliente ,' do ', veiculo)); 
+end
+// delimiter ;
+
+INSERT INTO vendas (id, id_veiculo, id_cliente, data_venda) VALUES (49, 1, 1, '2023-05-10');
+
+select * from vendas;
+select * from logVendas;
+
+
