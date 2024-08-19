@@ -1,3 +1,4 @@
+// tem todas as intrruções necessárias opara criar uma tabela no banco de dados
 const Sequelize = require('sequelize');
 const database = require('../config/db');
 const sala = require('../model/sala');
@@ -33,4 +34,4 @@ aluno.belongsTo(sala, {
     foreignKey: 'IDSala'
         });
 
-module.exports = aluno;
+module.exports = aluno; // exporta essas instruções
