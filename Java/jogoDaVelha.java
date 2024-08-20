@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 // import java.awt.event.ActionListener;
 
@@ -15,7 +16,7 @@ public class game extends JFrame
         setTitle("Jogo da Velha");
         setDefaultCloseOperation(3); // exit x
         setLayout(null); // thats allow modification
-        setBounds(250, 100, 700, 500);
+        setBounds(700, 100, 700, 500);
 
         int count = 0;
 
@@ -23,8 +24,9 @@ public class game extends JFrame
             for(int j = 0; j < 3; j++) 
             {
                 bt[count] = new JButton();
+                bt[count].setFont(new Font("arial", Font.BOLD, 40));
                 add(bt[count]);
-                bt[count].setBounds((100 * i) + 50 ,( 100 * j) + 50, 95, 95); // config width
+                bt[count].setBounds((100 * i) + 60 ,( 100 * j) + 60, 95, 95); // config width
                 count++;
             }
         }
