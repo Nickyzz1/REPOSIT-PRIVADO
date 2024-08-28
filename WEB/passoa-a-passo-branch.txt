@@ -1,0 +1,21 @@
+git graph
+ajax + js
+showroom
+vercel
+versionamento = dividir em versões do git - > controlar mudanças feitas  --> com branch
+
+-- criar um reposit
+-- dar git clone no repositorio novo,dar um cd para mudar para a pasta nova criada, dar um code .
+-- copiar o linbk do repositório prof
+-- dar um git clone tbm no desktop, agora tem dois repositórios
+-- apagar a .git do professor copiar os códigos pro meu
+-- depois dar cd 'meu reposit'
+- dar commit de novo e adc;
+-- baixar a extenção git graph;
+-- ir para view git graph
+-- criar uma nova branch dev
+-- no terminal mudar para gitbash
+-- dar git push
+-- copiar o caminho do código
+-- conferir se foi a nova branch para o git
+
