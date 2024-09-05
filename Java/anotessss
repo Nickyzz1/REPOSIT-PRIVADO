@@ -1,0 +1,43 @@
+documentação
+view e react
+gabreil snoffman
+node = react = biblioteca
+vite(client side : request, get, post, que tem componentes), next(server side.  -> quando faz requisições, beckend se está deployado) = framwork
+use effect
+next -> beckend dentro do front para o seo
+https://vitejs.dev/guide/
+https://react.dev/learn
+npx cria repositórios com node
+npx create--next-app
+ract, angular, view
+typescrip ==> linguagem tipa
+router dom = estrutura de redes que o react usa, acessar url
+npm i
+npm runn dev
+co=losendbox.io/sandbox/line-
+recharts.org simplebarchar
+
+fast fy
+nest
+
+  {
+    "id": 3,
+    "name": "",
+    "desc": "Corte de espinho e rosas",
+    "value": "200.00",
+    "image": "https://cdn.record.com.br/wp-content/uploads/2020/08/25155426/6126.jpeg"
+  },
+  {
+    "id": 4,
+    "name": "",
+    "desc": "Os Irmãos Karamazóv",
+    "value": "200.00",
+    "image": "https://martinsfontespaulista.vteximg.com.br/arquivos/ids/1510848-800-800/1018131.jpg?v=638024132010770000"
+  },
+  {
+    "id": 5,
+    "name": "",
+    "desc": "Noites brancas",
+    "value": "200.00",
+    "image": "https://cdl-static.s3-sa-east-1.amazonaws.com/covers/gg/9788582850749/noites-brancas.jpg"
+  }
