@@ -17,7 +17,9 @@ select * from tb_endereco;
 call pedido(12,1, 30.0, 'sem cebola');
 -- usuario int, endereco int, total decimal, ob varchar(255
 select * from tb_pedido;
-call pc_pedido_hamburguer(13);
+call pedidoHamburguer(13, 12, 2);
+-- mosytra tds os pedidos do usuário;
+call pc_pedidos(12);
 -- procedure que mostra tds os hamburgueres
 -- fazer pedido
 -- cancelar pedido
